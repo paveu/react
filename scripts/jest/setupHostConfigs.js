@@ -3,6 +3,7 @@
 const fs = require('fs');
 const nodePath = require('path');
 const inlinedHostConfigs = require('../shared/inlinedHostConfigs');
+const {getForkCandidates} = require('../shared/resolveHostConfigFork');
 
 function resolveEntryFork(resolvedEntry, isFBBundle) {
   // Pick which entry point fork to use:
@@ -191,10 +192,10 @@ function mockAllConfigs(rendererInfo) {
     jest.mock(path, () => {
       let idx = path.lastIndexOf('/');
       let forkPath = path.slice(0, idx) + '/forks' + path.slice(idx);
-      let parts = rendererInfo.shortName.split('-');
-      while (parts.length) {
+      const parts = getForkCandidates(rendererInfo.shortName);
+      for (let i = 0; i < parts.length; i++) {
         try {
-          const candidate = `${forkPath}.${parts.join('-')}.js`;
+          const candidate = `${forkPath}.${parts[i]}.js`;
           fs.statSync(nodePath.join(process.cwd(), 'packages', candidate));
           return jest.requireActual(candidate);
         } catch (error) {
@@ -203,7 +204,6 @@ function mockAllConfigs(rendererInfo) {
           }
           // try without a part
         }
-        parts.pop();
       }
       throw new Error(
         `Expected to find a fork for ${path} but did not find one.`

@@ -261,30 +261,30 @@ No data or runtime migration. `.custom.js`/`.noop.js` become generated artifacts
 
 #### Automated
 
-- [x] 2.1 Generating `.custom.js` produces zero diff vs committed
-- [x] 2.2 Generating `.noop.js` produces zero diff vs committed
-- [x] 2.3 Parity test still passes
-- [x] 2.4 Flow unaffected (`yarn flow`)
-- [x] 2.5 Full suite passes (`yarn test`)
-- [x] 2.6 Linting passes (`yarn lint`)
+- [x] 2.1 Generating `.custom.js` produces zero diff vs committed — e0ddc873e
+- [x] 2.2 Generating `.noop.js` produces zero diff vs committed — e0ddc873e
+- [x] 2.3 Parity test still passes — e0ddc873e
+- [x] 2.4 Flow unaffected (`yarn flow`) — e0ddc873e
+- [x] 2.5 Full suite passes (`yarn test`) — e0ddc873e
+- [x] 2.6 Linting passes (`yarn lint`) — e0ddc873e
 
 #### Manual
 
-- [x] 2.7 Adding a symbol + regenerating yields correct passthroughs in both files, then revert
-- [x] 2.8 Generated files visually indistinguishable from originals
-- [x] 2.9 CI freshness step fails on a hand-edited out-of-sync fork, then revert
+- [x] 2.7 Adding a symbol + regenerating yields correct passthroughs in both files, then revert — e0ddc873e
+- [x] 2.8 Generated files visually indistinguishable from originals — e0ddc873e
+- [x] 2.9 CI freshness step fails on a hand-edited out-of-sync fork, then revert — e0ddc873e
 
 ### Phase 3: T1 — Extract the shared fork selector
 
 #### Automated
 
-- [ ] 3.1 Selector unit test passes
-- [ ] 3.2 Flow resolves every config (`yarn flow`)
-- [ ] 3.3 Full suite passes (`yarn test`)
-- [ ] 3.4 Production build resolves forks correctly (`yarn build`)
-- [ ] 3.5 Linting passes (`yarn lint`)
+- [x] 3.1 Selector unit test passes
+- [x] 3.2 Flow resolves every config (`yarn flow`)
+- [x] 3.3 Full suite passes (`yarn test`)
+- [x] 3.4 Production build resolves forks correctly (`yarn build`)
+- [x] 3.5 Linting passes (`yarn lint`)
 
 #### Manual
 
-- [ ] 3.6 All three toolchains resolve the same fork for a representative `shortName`
-- [ ] 3.7 No behavioral difference for edge cases (multi-segment names, base fallback)
+- [x] 3.6 All three toolchains resolve the same fork for a representative `shortName`
+- [x] 3.7 No behavioral difference for edge cases (multi-segment names, base fallback)

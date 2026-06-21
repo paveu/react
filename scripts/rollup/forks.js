@@ -3,6 +3,7 @@
 const fs = require('node:fs');
 const {bundleTypes, moduleTypes} = require('./bundles');
 const inlinedHostConfigs = require('../shared/inlinedHostConfigs');
+const {getForkCandidates} = require('../shared/resolveHostConfigFork');
 
 const {
   FB_WWW_DEV,
@@ -27,17 +28,15 @@ const __EXPERIMENTAL__ =
     : true;
 
 function findNearestExistingForkFile(path, segmentedIdentifier, suffix) {
-  const segments = segmentedIdentifier.split('-');
-  while (segments.length) {
-    const candidate = segments.join('-');
-    const forkPath = path + candidate + suffix;
+  const candidates = getForkCandidates(segmentedIdentifier);
+  for (let i = 0; i < candidates.length; i++) {
+    const forkPath = path + candidates[i] + suffix;
     try {
       fs.statSync(forkPath);
       return forkPath;
     } catch (error) {
       // Try the next candidate.
     }
-    segments.pop();
   }
   return null;
 }

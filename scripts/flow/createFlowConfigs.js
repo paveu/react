@@ -12,6 +12,7 @@ const fs = require('fs');
 const path = require('path');
 const mkdirp = require('mkdirp');
 const inlinedHostConfigs = require('../shared/inlinedHostConfigs');
+const {getForkCandidates} = require('../shared/resolveHostConfigFork');
 const flowVersion = require('../../package.json').devDependencies['flow-bin'];
 
 const configTemplate = fs
@@ -40,14 +41,13 @@ function addFork(forks, renderer, file) {
 
   const baseFilename = file.slice(basePath.length + 1);
 
-  const parts = renderer.split('-');
-  while (parts.length) {
-    const candidate = `forks/${baseFilename}.${parts.join('-')}.js`;
+  const candidates = getForkCandidates(renderer);
+  for (let i = 0; i < candidates.length; i++) {
+    const candidate = `forks/${baseFilename}.${candidates[i]}.js`;
     if (allForks.has(candidate)) {
       forks.set(candidate, `${baseFilename}$$`);
       return;
     }
-    parts.pop();
   }
   throw new Error(`Cannot find fork for ${file} for renderer ${renderer}`);
 }
