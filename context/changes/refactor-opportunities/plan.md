@@ -278,13 +278,13 @@ No data or runtime migration. `.custom.js`/`.noop.js` become generated artifacts
 
 #### Automated
 
-- [x] 3.1 Selector unit test passes
-- [x] 3.2 Flow resolves every config (`yarn flow`)
-- [x] 3.3 Full suite passes (`yarn test`)
-- [x] 3.4 Production build resolves forks correctly (`yarn build`)
-- [x] 3.5 Linting passes (`yarn lint`)
+- [x] 3.1 Selector unit test passes — 15fbae4e0
+- [x] 3.2 Flow resolves every config (`yarn flow`) — 15fbae4e0
+- [x] 3.3 Full suite passes (`yarn test`) — 15fbae4e0
+- [x] 3.4 Production build resolves forks correctly (`yarn build`) — 15fbae4e0
+- [x] 3.5 Linting passes (`yarn lint`) — 15fbae4e0
 
 #### Manual
 
-- [x] 3.6 All three toolchains resolve the same fork for a representative `shortName`
-- [x] 3.7 No behavioral difference for edge cases (multi-segment names, base fallback)
+- [x] 3.6 All three toolchains resolve the same fork for a representative `shortName` — 15fbae4e0
+- [x] 3.7 No behavioral difference for edge cases (multi-segment names, base fallback) — 15fbae4e0
