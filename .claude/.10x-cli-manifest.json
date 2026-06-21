@@ -1,0 +1,19 @@
+{
+  "package": "@przeprogramowani/10x-cli",
+  "version": "1.3.2",
+  "manifestVersion": 2,
+  "lastApplied": "2026-06-21T13:21:10.735Z",
+  "lessonId": "m4l2",
+  "course": "10xdevs3",
+  "tool": "claude-code",
+  "files": {
+    "skills": {},
+    "prompts": [
+      "m4l2-1-territory-git-history.md",
+      "m4l2-2-structure-dependency-cruiser.md",
+      "m4l2-3-contributors-git.md",
+      "m4l2-repo-map-synthesis.md"
+    ],
+    "configs": []
+  }
+}

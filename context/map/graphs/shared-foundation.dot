@@ -1,0 +1,730 @@
+strict digraph "dependency-cruiser output"{
+    rankdir="LR" splines="true" overlap="false" nodesep="0.16" ranksep="0.18" fontname="Helvetica-bold" fontsize="9" style="rounded,bold,filled" fillcolor="#ffffff" compound="true"
+    node [shape="box" style="rounded, filled" height="0.2" color="black" fillcolor="#ffffcc" fontcolor="black" fontname="Helvetica" fontsize="9"]
+    edge [arrowhead="normal" arrowsize="0.6" penwidth="2.0" color="#00000033" fontname="Helvetica" fontsize="9"]
+
+    "ReactFeatureFlags" [label=<ReactFeatureFlags> tooltip="ReactFeatureFlags" ]
+    "ReactNativeInternalFeatureFlags" [label=<ReactNativeInternalFeatureFlags> tooltip="ReactNativeInternalFeatureFlags" ]
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react-dom-bindings" {label="react-dom-bindings" subgraph "cluster_packages/react-dom-bindings/src" {label="src" "packages/react-dom-bindings/src/client" [label=<client> tooltip="client" URL="packages/react-dom-bindings/src/client" shape="box3d"] } } }
+    "packages/react-dom-bindings/src/client" -> "packages/shared/ReactFeatureFlags.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react-dom-bindings" {label="react-dom-bindings" subgraph "cluster_packages/react-dom-bindings/src" {label="src" "packages/react-dom-bindings/src/shared" [label=<shared> tooltip="shared" URL="packages/react-dom-bindings/src/shared" shape="box3d"] } } }
+    "packages/react-dom-bindings/src/shared" -> "packages/react-reconciler/src/ReactInternalTypes.js"
+    "packages/react-dom-bindings/src/shared" -> "packages/shared/ReactDOMSharedInternals.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-dom-bindings/src/shared" -> "packages/shared/ReactSharedInternals.js"
+    "packages/react-dom-bindings/src/shared" -> "packages/shared/ReactTypes.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react-dom" {label="react-dom" "packages/react-dom/index.js" [label=<index.js> tooltip="index.js" URL="packages/react-dom/index.js" ] } }
+    "packages/react-dom/index.js" -> "packages/react-dom/src/ReactDOMSharedInternals.js" [arrowhead="inv"]
+    "packages/react-dom/index.js" -> "packages/react-dom/src/shared" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react-dom" {label="react-dom" subgraph "cluster_packages/react-dom/src" {label="src" "packages/react-dom/src/ReactDOMSharedInternals.js" [label=<ReactDOMSharedInternals.js> tooltip="ReactDOMSharedInternals.js" URL="packages/react-dom/src/ReactDOMSharedInternals.js" ] } } }
+    "packages/react-dom/src/ReactDOMSharedInternals.js" -> "packages/shared/noop.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react-dom" {label="react-dom" subgraph "cluster_packages/react-dom/src" {label="src" "packages/react-dom/src/shared" [label=<shared> tooltip="shared" URL="packages/react-dom/src/shared" shape="box3d"] } } }
+    "packages/react-dom/src/shared" -> "packages/react-dom-bindings/src/client"
+    "packages/react-dom/src/shared" -> "packages/react-dom-bindings/src/shared" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-dom/src/shared" -> "packages/react-reconciler/src/ReactPortal.js"
+    "packages/react-dom/src/shared" -> "packages/shared/ReactTypes.js"
+    "packages/react-dom/src/shared" -> "packages/shared/ReactVersion.js"
+    "packages/react-dom/src/shared" -> "packages/shared/ReactDOMSharedInternals.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-dom/src/shared" -> "packages/shared/ReactFeatureFlags.js"
+    "packages/react-dom/src/shared" -> "packages/shared/ReactSharedInternals.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react-reconciler" {label="react-reconciler" subgraph "cluster_packages/react-reconciler/src" {label="src" "packages/react-reconciler/src/ReactChildFiber.js" [label=<ReactChildFiber.js> tooltip="ReactChildFiber.js" URL="packages/react-reconciler/src/ReactChildFiber.js" ] } } }
+    "packages/react-reconciler/src/ReactChildFiber.js" -> "packages/react-reconciler/src/ReactCurrentFiber.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactChildFiber.js" -> "packages/react-reconciler/src/ReactFiber.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactChildFiber.js" -> "packages/react-reconciler/src/ReactFiberFlags.js"
+    "packages/react-reconciler/src/ReactChildFiber.js" -> "packages/react-reconciler/src/ReactFiberHotReloading.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactChildFiber.js" -> "packages/react-reconciler/src/ReactFiberLane.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactChildFiber.js" -> "packages/react-reconciler/src/ReactFiberNewContext.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactChildFiber.js" -> "packages/react-reconciler/src/ReactFiberThenable.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactChildFiber.js" -> "packages/react-reconciler/src/ReactInternalTypes.js"
+    "packages/react-reconciler/src/ReactChildFiber.js" -> "packages/react-reconciler/src/getComponentNameFromFiber.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactChildFiber.js" -> "packages/shared/isArray.js"
+    "packages/react-reconciler/src/ReactChildFiber.js" -> "packages/shared/ReactElementType.js"
+    "packages/react-reconciler/src/ReactChildFiber.js" -> "packages/shared/ReactFeatureFlags.js"
+    "packages/react-reconciler/src/ReactChildFiber.js" -> "packages/shared/ReactSymbols.js"
+    "packages/react-reconciler/src/ReactChildFiber.js" -> "packages/shared/ReactTypes.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react-reconciler" {label="react-reconciler" subgraph "cluster_packages/react-reconciler/src" {label="src" "packages/react-reconciler/src/ReactCurrentFiber.js" [label=<ReactCurrentFiber.js> tooltip="ReactCurrentFiber.js" URL="packages/react-reconciler/src/ReactCurrentFiber.js" ] } } }
+    "packages/react-reconciler/src/ReactCurrentFiber.js" -> "packages/react-reconciler/src/ReactFiberComponentStack.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactCurrentFiber.js" -> "packages/react-reconciler/src/ReactInternalTypes.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactCurrentFiber.js" -> "packages/react-reconciler/src/getComponentNameFromFiber.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactCurrentFiber.js" -> "packages/shared/ReactSharedInternals.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react-reconciler" {label="react-reconciler" subgraph "cluster_packages/react-reconciler/src" {label="src" "packages/react-reconciler/src/ReactFiber.js" [label=<ReactFiber.js> tooltip="ReactFiber.js" URL="packages/react-reconciler/src/ReactFiber.js" ] } } }
+    "packages/react-reconciler/src/ReactFiber.js" -> "packages/shared/ReactTypes.js"
+    "packages/react-reconciler/src/ReactFiber.js" -> "packages/react-reconciler/src/ReactFiberDevToolsHook.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiber.js" -> "packages/react-reconciler/src/ReactFiberFlags.js"
+    "packages/react-reconciler/src/ReactFiber.js" -> "packages/react-reconciler/src/ReactFiberHotReloading.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiber.js" -> "packages/react-reconciler/src/ReactFiberLane.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiber.js" -> "packages/react-reconciler/src/ReactFiberOffscreenComponent.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiber.js" -> "packages/react-reconciler/src/ReactFiberTracingMarkerComponent.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiber.js" -> "packages/react-reconciler/src/ReactFiberViewTransitionComponent.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiber.js" -> "packages/react-reconciler/src/ReactInternalTypes.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiber.js" -> "packages/react-reconciler/src/getComponentNameFromFiber.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiber.js" -> "packages/shared/getComponentNameFromType.js"
+    "packages/react-reconciler/src/ReactFiber.js" -> "packages/shared/isArray.js"
+    "packages/react-reconciler/src/ReactFiber.js" -> "packages/shared/ReactElementType.js"
+    "packages/react-reconciler/src/ReactFiber.js" -> "packages/shared/ReactFeatureFlags.js"
+    "packages/react-reconciler/src/ReactFiber.js" -> "packages/shared/ReactSymbols.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react-reconciler" {label="react-reconciler" subgraph "cluster_packages/react-reconciler/src" {label="src" "packages/react-reconciler/src/ReactFiberAct.js" [label=<ReactFiberAct.js> tooltip="ReactFiberAct.js" URL="packages/react-reconciler/src/ReactFiberAct.js" ] } } }
+    "packages/react-reconciler/src/ReactFiberAct.js" -> "packages/react-reconciler/src/ReactFiber.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberAct.js" -> "packages/shared/ReactSharedInternals.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react-reconciler" {label="react-reconciler" subgraph "cluster_packages/react-reconciler/src" {label="src" "packages/react-reconciler/src/ReactFiberApplyGesture.js" [label=<ReactFiberApplyGesture.js> tooltip="ReactFiberApplyGesture.js" URL="packages/react-reconciler/src/ReactFiberApplyGesture.js" ] } } }
+    "packages/react-reconciler/src/ReactFiberApplyGesture.js" -> "packages/react-reconciler/src/ReactFiberCommitEffects.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberApplyGesture.js" -> "packages/react-reconciler/src/ReactFiberCommitViewTransitions.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberApplyGesture.js" -> "packages/react-reconciler/src/ReactFiberFlags.js"
+    "packages/react-reconciler/src/ReactFiberApplyGesture.js" -> "packages/react-reconciler/src/ReactFiberMutationTracking.js"
+    "packages/react-reconciler/src/ReactFiberApplyGesture.js" -> "packages/react-reconciler/src/ReactFiberOffscreenComponent.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberApplyGesture.js" -> "packages/react-reconciler/src/ReactFiberViewTransitionComponent.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberApplyGesture.js" -> "packages/react-reconciler/src/ReactFiberWorkLoop.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberApplyGesture.js" -> "packages/react-reconciler/src/ReactInternalTypes.js"
+    "packages/react-reconciler/src/ReactFiberApplyGesture.js" -> "packages/react-reconciler/src/ReactProfilerTimer.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberApplyGesture.js" -> "packages/shared/ReactFeatureFlags.js"
+    "packages/react-reconciler/src/ReactFiberApplyGesture.js" -> "packages/shared/ReactTypes.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react-reconciler" {label="react-reconciler" subgraph "cluster_packages/react-reconciler/src" {label="src" "packages/react-reconciler/src/ReactFiberAsyncAction.js" [label=<ReactFiberAsyncAction.js> tooltip="ReactFiberAsyncAction.js" URL="packages/react-reconciler/src/ReactFiberAsyncAction.js" ] } } }
+    "packages/react-reconciler/src/ReactFiberAsyncAction.js" -> "packages/react-reconciler/src/ReactFiberLane.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberAsyncAction.js" -> "packages/react-reconciler/src/ReactFiberRootScheduler.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberAsyncAction.js" -> "packages/react-reconciler/src/ReactFiberTransitionTypes.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberAsyncAction.js" -> "packages/react-reconciler/src/ReactProfilerTimer.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberAsyncAction.js" -> "packages/react/src/ReactStartTransition.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberAsyncAction.js" -> "packages/shared/noop.js"
+    "packages/react-reconciler/src/ReactFiberAsyncAction.js" -> "packages/shared/ReactFeatureFlags.js"
+    "packages/react-reconciler/src/ReactFiberAsyncAction.js" -> "packages/shared/ReactTypes.js"
+    "packages/react-reconciler/src/ReactFiberAsyncAction.js" -> "packages/shared/reportGlobalError.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react-reconciler" {label="react-reconciler" subgraph "cluster_packages/react-reconciler/src" {label="src" "packages/react-reconciler/src/ReactFiberBeginWork.js" [label=<ReactFiberBeginWork.js> tooltip="ReactFiberBeginWork.js" URL="packages/react-reconciler/src/ReactFiberBeginWork.js" ] } } }
+    "packages/react-reconciler/src/ReactFiberBeginWork.js" -> "packages/react-reconciler/src/ReactChildFiber.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberBeginWork.js" -> "packages/react-reconciler/src/ReactCurrentFiber.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberBeginWork.js" -> "packages/react-reconciler/src/ReactFiber.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberBeginWork.js" -> "packages/react-reconciler/src/ReactFiberCacheComponent.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberBeginWork.js" -> "packages/react-reconciler/src/ReactFiberClassComponent.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberBeginWork.js" -> "packages/react-reconciler/src/ReactFiberClassUpdateQueue.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberBeginWork.js" -> "packages/react-reconciler/src/ReactFiberDevToolsHook.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberBeginWork.js" -> "packages/react-reconciler/src/ReactFiberFlags.js"
+    "packages/react-reconciler/src/ReactFiberBeginWork.js" -> "packages/react-reconciler/src/ReactFiberHooks.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberBeginWork.js" -> "packages/react-reconciler/src/ReactFiberHotReloading.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberBeginWork.js" -> "packages/react-reconciler/src/ReactFiberLane.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberBeginWork.js" -> "packages/react-reconciler/src/ReactFiberLegacyContext.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberBeginWork.js" -> "packages/react-reconciler/src/ReactFiberNewContext.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberBeginWork.js" -> "packages/react-reconciler/src/ReactFiberOffscreenComponent.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberBeginWork.js" -> "packages/react-reconciler/src/ReactFiberReconciler.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberBeginWork.js" -> "packages/react-reconciler/src/ReactFiberRoot.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberBeginWork.js" -> "packages/react-reconciler/src/ReactFiberSuspenseComponent.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberBeginWork.js" -> "packages/react-reconciler/src/ReactFiberSuspenseContext.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberBeginWork.js" -> "packages/react-reconciler/src/ReactFiberThenable.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberBeginWork.js" -> "packages/react-reconciler/src/ReactFiberThrow.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberBeginWork.js" -> "packages/react-reconciler/src/ReactFiberTracingMarkerComponent.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberBeginWork.js" -> "packages/react-reconciler/src/ReactFiberTransition.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberBeginWork.js" -> "packages/react-reconciler/src/ReactFiberViewTransitionComponent.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberBeginWork.js" -> "packages/react-reconciler/src/ReactFiberWorkLoop.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberBeginWork.js" -> "packages/react-reconciler/src/ReactInternalTypes.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberBeginWork.js" -> "packages/react-reconciler/src/ReactProfilerTimer.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberBeginWork.js" -> "packages/react-reconciler/src/getComponentNameFromFiber.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberBeginWork.js" -> "packages/react/src/ReactLazy.js"
+    "packages/react-reconciler/src/ReactFiberBeginWork.js" -> "packages/shared/getComponentNameFromType.js"
+    "packages/react-reconciler/src/ReactFiberBeginWork.js" -> "packages/shared/ReactFeatureFlags.js"
+    "packages/react-reconciler/src/ReactFiberBeginWork.js" -> "packages/shared/ReactSymbols.js"
+    "packages/react-reconciler/src/ReactFiberBeginWork.js" -> "packages/shared/ReactTypes.js"
+    "packages/react-reconciler/src/ReactFiberBeginWork.js" -> "packages/shared/shallowEqual.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react-reconciler" {label="react-reconciler" subgraph "cluster_packages/react-reconciler/src" {label="src" "packages/react-reconciler/src/ReactFiberCacheComponent.js" [label=<ReactFiberCacheComponent.js> tooltip="ReactFiberCacheComponent.js" URL="packages/react-reconciler/src/ReactFiberCacheComponent.js" ] } } }
+    "packages/react-reconciler/src/ReactFiberCacheComponent.js" -> "packages/react-reconciler/src/ReactFiberNewContext.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberCacheComponent.js" -> "packages/react-reconciler/src/ReactInternalTypes.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberCacheComponent.js" -> "packages/shared/ReactSymbols.js"
+    "packages/react-reconciler/src/ReactFiberCacheComponent.js" -> "packages/shared/ReactTypes.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react-reconciler" {label="react-reconciler" subgraph "cluster_packages/react-reconciler/src" {label="src" "packages/react-reconciler/src/ReactFiberClassComponent.js" [label=<ReactFiberClassComponent.js> tooltip="ReactFiberClassComponent.js" URL="packages/react-reconciler/src/ReactFiberClassComponent.js" ] } } }
+    "packages/react-reconciler/src/ReactFiberClassComponent.js" -> "packages/react-reconciler/src/ReactFiberClassUpdateQueue.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberClassComponent.js" -> "packages/react-reconciler/src/ReactFiberDevToolsHook.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberClassComponent.js" -> "packages/react-reconciler/src/ReactFiberFlags.js"
+    "packages/react-reconciler/src/ReactFiberClassComponent.js" -> "packages/react-reconciler/src/ReactFiberLane.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberClassComponent.js" -> "packages/react-reconciler/src/ReactFiberLegacyContext.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberClassComponent.js" -> "packages/react-reconciler/src/ReactFiberNewContext.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberClassComponent.js" -> "packages/react-reconciler/src/ReactFiberWorkLoop.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberClassComponent.js" -> "packages/react-reconciler/src/ReactInternalTypes.js"
+    "packages/react-reconciler/src/ReactFiberClassComponent.js" -> "packages/react-reconciler/src/ReactProfilerTimer.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberClassComponent.js" -> "packages/react-reconciler/src/getComponentNameFromFiber.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberClassComponent.js" -> "packages/shared/assign.js"
+    "packages/react-reconciler/src/ReactFiberClassComponent.js" -> "packages/shared/getComponentNameFromType.js"
+    "packages/react-reconciler/src/ReactFiberClassComponent.js" -> "packages/shared/isArray.js"
+    "packages/react-reconciler/src/ReactFiberClassComponent.js" -> "packages/shared/ReactFeatureFlags.js"
+    "packages/react-reconciler/src/ReactFiberClassComponent.js" -> "packages/shared/ReactInstanceMap.js"
+    "packages/react-reconciler/src/ReactFiberClassComponent.js" -> "packages/shared/ReactSymbols.js"
+    "packages/react-reconciler/src/ReactFiberClassComponent.js" -> "packages/shared/shallowEqual.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react-reconciler" {label="react-reconciler" subgraph "cluster_packages/react-reconciler/src" {label="src" "packages/react-reconciler/src/ReactFiberClassUpdateQueue.js" [label=<ReactFiberClassUpdateQueue.js> tooltip="ReactFiberClassUpdateQueue.js" URL="packages/react-reconciler/src/ReactFiberClassUpdateQueue.js" ] } } }
+    "packages/react-reconciler/src/ReactFiberClassUpdateQueue.js" -> "packages/react-reconciler/src/getComponentNameFromFiber.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberClassUpdateQueue.js" -> "packages/react-reconciler/src/ReactFiberAsyncAction.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberClassUpdateQueue.js" -> "packages/react-reconciler/src/ReactFiberDevToolsHook.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberClassUpdateQueue.js" -> "packages/react-reconciler/src/ReactFiberFlags.js"
+    "packages/react-reconciler/src/ReactFiberClassUpdateQueue.js" -> "packages/react-reconciler/src/ReactFiberLane.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberClassUpdateQueue.js" -> "packages/react-reconciler/src/ReactFiberNewContext.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberClassUpdateQueue.js" -> "packages/react-reconciler/src/ReactFiberWorkLoop.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberClassUpdateQueue.js" -> "packages/react-reconciler/src/ReactInternalTypes.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberClassUpdateQueue.js" -> "packages/shared/assign.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react-reconciler" {label="react-reconciler" subgraph "cluster_packages/react-reconciler/src" {label="src" "packages/react-reconciler/src/ReactFiberCommitEffects.js" [label=<ReactFiberCommitEffects.js> tooltip="ReactFiberCommitEffects.js" URL="packages/react-reconciler/src/ReactFiberCommitEffects.js" ] } } }
+    "packages/react-reconciler/src/ReactFiberCommitEffects.js" -> "packages/react-reconciler/src/ReactCurrentFiber.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberCommitEffects.js" -> "packages/react-reconciler/src/ReactFiberBeginWork.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberCommitEffects.js" -> "packages/react-reconciler/src/ReactFiberClassComponent.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberCommitEffects.js" -> "packages/react-reconciler/src/ReactFiberClassUpdateQueue.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberCommitEffects.js" -> "packages/react-reconciler/src/ReactFiberDevToolsHook.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberCommitEffects.js" -> "packages/react-reconciler/src/ReactFiberFlags.js"
+    "packages/react-reconciler/src/ReactFiberCommitEffects.js" -> "packages/react-reconciler/src/ReactFiberHooks.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberCommitEffects.js" -> "packages/react-reconciler/src/ReactFiberViewTransitionComponent.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberCommitEffects.js" -> "packages/react-reconciler/src/ReactFiberWorkLoop.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberCommitEffects.js" -> "packages/react-reconciler/src/ReactInternalTypes.js"
+    "packages/react-reconciler/src/ReactFiberCommitEffects.js" -> "packages/react-reconciler/src/ReactProfilerTimer.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberCommitEffects.js" -> "packages/react-reconciler/src/getComponentNameFromFiber.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberCommitEffects.js" -> "packages/shared/ReactFeatureFlags.js"
+    "packages/react-reconciler/src/ReactFiberCommitEffects.js" -> "packages/shared/ReactTypes.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react-reconciler" {label="react-reconciler" subgraph "cluster_packages/react-reconciler/src" {label="src" "packages/react-reconciler/src/ReactFiberCommitHostEffects.js" [label=<ReactFiberCommitHostEffects.js> tooltip="ReactFiberCommitHostEffects.js" URL="packages/react-reconciler/src/ReactFiberCommitHostEffects.js" ] } } }
+    "packages/react-reconciler/src/ReactFiberCommitHostEffects.js" -> "packages/react-reconciler/src/ReactCurrentFiber.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberCommitHostEffects.js" -> "packages/react-reconciler/src/ReactFiberFlags.js"
+    "packages/react-reconciler/src/ReactFiberCommitHostEffects.js" -> "packages/react-reconciler/src/ReactFiberMutationTracking.js"
+    "packages/react-reconciler/src/ReactFiberCommitHostEffects.js" -> "packages/react-reconciler/src/ReactFiberWorkLoop.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberCommitHostEffects.js" -> "packages/react-reconciler/src/ReactInternalTypes.js"
+    "packages/react-reconciler/src/ReactFiberCommitHostEffects.js" -> "packages/shared/ReactFeatureFlags.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react-reconciler" {label="react-reconciler" subgraph "cluster_packages/react-reconciler/src" {label="src" "packages/react-reconciler/src/ReactFiberCommitViewTransitions.js" [label=<ReactFiberCommitViewTransitions.js> tooltip="ReactFiberCommitViewTransitions.js" URL="packages/react-reconciler/src/ReactFiberCommitViewTransitions.js" ] } } }
+    "packages/react-reconciler/src/ReactFiberCommitViewTransitions.js" -> "packages/react-reconciler/src/ReactFiberFlags.js"
+    "packages/react-reconciler/src/ReactFiberCommitViewTransitions.js" -> "packages/react-reconciler/src/ReactFiberViewTransitionComponent.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberCommitViewTransitions.js" -> "packages/react-reconciler/src/ReactFiberWorkLoop.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberCommitViewTransitions.js" -> "packages/react-reconciler/src/ReactInternalTypes.js"
+    "packages/react-reconciler/src/ReactFiberCommitViewTransitions.js" -> "packages/react-reconciler/src/ReactProfilerTimer.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberCommitViewTransitions.js" -> "packages/shared/ReactFeatureFlags.js"
+    "packages/react-reconciler/src/ReactFiberCommitViewTransitions.js" -> "packages/shared/ReactTypes.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react-reconciler" {label="react-reconciler" subgraph "cluster_packages/react-reconciler/src" {label="src" "packages/react-reconciler/src/ReactFiberCommitWork.js" [label=<ReactFiberCommitWork.js> tooltip="ReactFiberCommitWork.js" URL="packages/react-reconciler/src/ReactFiberCommitWork.js" ] } } }
+    "packages/react-reconciler/src/ReactFiberCommitWork.js" -> "packages/react-reconciler/src/ReactFiberCacheComponent.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberCommitWork.js" -> "packages/react-reconciler/src/ReactFiberClassUpdateQueue.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberCommitWork.js" -> "packages/react-reconciler/src/ReactFiberCommitEffects.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberCommitWork.js" -> "packages/react-reconciler/src/ReactFiberCommitHostEffects.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberCommitWork.js" -> "packages/react-reconciler/src/ReactFiberCommitViewTransitions.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberCommitWork.js" -> "packages/react-reconciler/src/ReactFiberDevToolsHook.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberCommitWork.js" -> "packages/react-reconciler/src/ReactFiberDuplicateViewTransitions.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberCommitWork.js" -> "packages/react-reconciler/src/ReactFiberFlags.js"
+    "packages/react-reconciler/src/ReactFiberCommitWork.js" -> "packages/react-reconciler/src/ReactFiberHooks.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberCommitWork.js" -> "packages/react-reconciler/src/ReactFiberLane.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberCommitWork.js" -> "packages/react-reconciler/src/ReactFiberMutationTracking.js"
+    "packages/react-reconciler/src/ReactFiberCommitWork.js" -> "packages/react-reconciler/src/ReactFiberOffscreenComponent.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberCommitWork.js" -> "packages/react-reconciler/src/ReactFiberPerformanceTrack.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberCommitWork.js" -> "packages/react-reconciler/src/ReactFiberRoot.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberCommitWork.js" -> "packages/react-reconciler/src/ReactFiberRootScheduler.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberCommitWork.js" -> "packages/react-reconciler/src/ReactFiberSuspenseComponent.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberCommitWork.js" -> "packages/react-reconciler/src/ReactFiberTracingMarkerComponent.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberCommitWork.js" -> "packages/react-reconciler/src/ReactFiberTreeReflection.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberCommitWork.js" -> "packages/react-reconciler/src/ReactFiberViewTransitionComponent.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberCommitWork.js" -> "packages/react-reconciler/src/ReactFiberWorkLoop.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberCommitWork.js" -> "packages/react-reconciler/src/ReactInternalTypes.js"
+    "packages/react-reconciler/src/ReactFiberCommitWork.js" -> "packages/react-reconciler/src/ReactProfilerTimer.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberCommitWork.js" -> "packages/react/src/ReactStartTransition.js"
+    "packages/react-reconciler/src/ReactFiberCommitWork.js" -> "packages/shared/ReactFeatureFlags.js"
+    "packages/react-reconciler/src/ReactFiberCommitWork.js" -> "packages/shared/ReactTypes.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react-reconciler" {label="react-reconciler" subgraph "cluster_packages/react-reconciler/src" {label="src" "packages/react-reconciler/src/ReactFiberCompleteWork.js" [label=<ReactFiberCompleteWork.js> tooltip="ReactFiberCompleteWork.js" URL="packages/react-reconciler/src/ReactFiberCompleteWork.js" ] } } }
+    "packages/react-reconciler/src/ReactFiberCompleteWork.js" -> "packages/react-reconciler/src/ReactChildFiber.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberCompleteWork.js" -> "packages/react-reconciler/src/ReactFiberCacheComponent.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberCompleteWork.js" -> "packages/react-reconciler/src/ReactFiberFlags.js"
+    "packages/react-reconciler/src/ReactFiberCompleteWork.js" -> "packages/react-reconciler/src/ReactFiberLane.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberCompleteWork.js" -> "packages/react-reconciler/src/ReactFiberLegacyContext.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberCompleteWork.js" -> "packages/react-reconciler/src/ReactFiberNewContext.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberCompleteWork.js" -> "packages/react-reconciler/src/ReactFiberOffscreenComponent.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberCompleteWork.js" -> "packages/react-reconciler/src/ReactFiberRoot.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberCompleteWork.js" -> "packages/react-reconciler/src/ReactFiberScope.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberCompleteWork.js" -> "packages/react-reconciler/src/ReactFiberSuspenseComponent.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberCompleteWork.js" -> "packages/react-reconciler/src/ReactFiberSuspenseContext.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberCompleteWork.js" -> "packages/react-reconciler/src/ReactFiberThenable.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberCompleteWork.js" -> "packages/react-reconciler/src/ReactFiberTracingMarkerComponent.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberCompleteWork.js" -> "packages/react-reconciler/src/ReactFiberTransition.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberCompleteWork.js" -> "packages/react-reconciler/src/ReactFiberWorkLoop.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberCompleteWork.js" -> "packages/react-reconciler/src/ReactInternalTypes.js"
+    "packages/react-reconciler/src/ReactFiberCompleteWork.js" -> "packages/react-reconciler/src/ReactProfilerTimer.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberCompleteWork.js" -> "packages/shared/ReactFeatureFlags.js"
+    "packages/react-reconciler/src/ReactFiberCompleteWork.js" -> "packages/shared/ReactTypes.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react-reconciler" {label="react-reconciler" subgraph "cluster_packages/react-reconciler/src" {label="src" "packages/react-reconciler/src/ReactFiberComponentStack.js" [label=<ReactFiberComponentStack.js> tooltip="ReactFiberComponentStack.js" URL="packages/react-reconciler/src/ReactFiberComponentStack.js" ] } } }
+    "packages/react-reconciler/src/ReactFiberComponentStack.js" -> "packages/react-reconciler/src/ReactInternalTypes.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberComponentStack.js" -> "packages/shared/ReactComponentStackFrame.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberComponentStack.js" -> "packages/shared/ReactFeatureFlags.js"
+    "packages/react-reconciler/src/ReactFiberComponentStack.js" -> "packages/shared/ReactOwnerStackFrames.js"
+    "packages/react-reconciler/src/ReactFiberComponentStack.js" -> "packages/shared/ReactTypes.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react-reconciler" {label="react-reconciler" subgraph "cluster_packages/react-reconciler/src" {label="src" "packages/react-reconciler/src/ReactFiberDevToolsHook.js" [label=<ReactFiberDevToolsHook.js> tooltip="ReactFiberDevToolsHook.js" URL="packages/react-reconciler/src/ReactFiberDevToolsHook.js" ] } } }
+    "packages/react-reconciler/src/ReactFiberDevToolsHook.js" -> "packages/react-reconciler/src/ReactFiberFlags.js"
+    "packages/react-reconciler/src/ReactFiberDevToolsHook.js" -> "packages/react-reconciler/src/ReactFiberLane.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberDevToolsHook.js" -> "packages/react-reconciler/src/ReactInternalTypes.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberDevToolsHook.js" -> "packages/shared/ReactFeatureFlags.js"
+    "packages/react-reconciler/src/ReactFiberDevToolsHook.js" -> "packages/shared/ReactTypes.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react-reconciler" {label="react-reconciler" subgraph "cluster_packages/react-reconciler/src" {label="src" "packages/react-reconciler/src/ReactFiberDuplicateViewTransitions.js" [label=<ReactFiberDuplicateViewTransitions.js> tooltip="ReactFiberDuplicateViewTransitions.js" URL="packages/react-reconciler/src/ReactFiberDuplicateViewTransitions.js" ] } } }
+    "packages/react-reconciler/src/ReactFiberDuplicateViewTransitions.js" -> "packages/react-reconciler/src/ReactCurrentFiber.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberDuplicateViewTransitions.js" -> "packages/react-reconciler/src/ReactInternalTypes.js"
+    "packages/react-reconciler/src/ReactFiberDuplicateViewTransitions.js" -> "packages/shared/ReactTypes.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react-reconciler" {label="react-reconciler" subgraph "cluster_packages/react-reconciler/src" {label="src" "packages/react-reconciler/src/ReactFiberErrorLogger.js" [label=<ReactFiberErrorLogger.js> tooltip="ReactFiberErrorLogger.js" URL="packages/react-reconciler/src/ReactFiberErrorLogger.js" ] } } }
+    "packages/react-reconciler/src/ReactFiberErrorLogger.js" -> "packages/react-reconciler/src/ReactInternalTypes.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberErrorLogger.js" -> "packages/react-reconciler/src/getComponentNameFromFiber.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberErrorLogger.js" -> "packages/shared/ReactSharedInternals.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberErrorLogger.js" -> "packages/shared/reportGlobalError.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react-reconciler" {label="react-reconciler" subgraph "cluster_packages/react-reconciler/src" {label="src" "packages/react-reconciler/src/ReactFiberFlags.js" [label=<ReactFiberFlags.js> tooltip="ReactFiberFlags.js" URL="packages/react-reconciler/src/ReactFiberFlags.js" ] } } }
+    "packages/react-reconciler/src/ReactFiberFlags.js" -> "packages/shared/ReactFeatureFlags.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react-reconciler" {label="react-reconciler" subgraph "cluster_packages/react-reconciler/src" {label="src" "packages/react-reconciler/src/ReactFiberGestureScheduler.js" [label=<ReactFiberGestureScheduler.js> tooltip="ReactFiberGestureScheduler.js" URL="packages/react-reconciler/src/ReactFiberGestureScheduler.js" ] } } }
+    "packages/react-reconciler/src/ReactFiberGestureScheduler.js" -> "packages/react-reconciler/src/ReactFiberLane.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberGestureScheduler.js" -> "packages/react-reconciler/src/ReactFiberRootScheduler.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberGestureScheduler.js" -> "packages/react-reconciler/src/ReactFiberWorkLoop.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberGestureScheduler.js" -> "packages/react-reconciler/src/ReactInternalTypes.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberGestureScheduler.js" -> "packages/react/src/ReactTransitionType.js"
+    "packages/react-reconciler/src/ReactFiberGestureScheduler.js" -> "packages/shared/ReactTypes.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react-reconciler" {label="react-reconciler" subgraph "cluster_packages/react-reconciler/src" {label="src" "packages/react-reconciler/src/ReactFiberHooks.js" [label=<ReactFiberHooks.js> tooltip="ReactFiberHooks.js" URL="packages/react-reconciler/src/ReactFiberHooks.js" ] } } }
+    "packages/react-reconciler/src/ReactFiberHooks.js" -> "packages/react-reconciler/src/ReactFiberAsyncAction.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberHooks.js" -> "packages/react-reconciler/src/ReactFiberBeginWork.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberHooks.js" -> "packages/react-reconciler/src/ReactFiberCacheComponent.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberHooks.js" -> "packages/react-reconciler/src/ReactFiberClassUpdateQueue.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberHooks.js" -> "packages/react-reconciler/src/ReactFiberDevToolsHook.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberHooks.js" -> "packages/react-reconciler/src/ReactFiberFlags.js"
+    "packages/react-reconciler/src/ReactFiberHooks.js" -> "packages/react-reconciler/src/ReactFiberGestureScheduler.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberHooks.js" -> "packages/react-reconciler/src/ReactFiberLane.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberHooks.js" -> "packages/react-reconciler/src/ReactFiberNewContext.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberHooks.js" -> "packages/react-reconciler/src/ReactFiberRootScheduler.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberHooks.js" -> "packages/react-reconciler/src/ReactFiberThenable.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberHooks.js" -> "packages/react-reconciler/src/ReactFiberTransition.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberHooks.js" -> "packages/react-reconciler/src/ReactFiberWorkLoop.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberHooks.js" -> "packages/react-reconciler/src/ReactInternalTypes.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberHooks.js" -> "packages/react-reconciler/src/ReactProfilerTimer.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberHooks.js" -> "packages/react-reconciler/src/getComponentNameFromFiber.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberHooks.js" -> "packages/react/src/ReactStartTransition.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberHooks.js" -> "packages/shared/isArray.js"
+    "packages/react-reconciler/src/ReactFiberHooks.js" -> "packages/shared/objectIs.js"
+    "packages/react-reconciler/src/ReactFiberHooks.js" -> "packages/shared/ReactFeatureFlags.js"
+    "packages/react-reconciler/src/ReactFiberHooks.js" -> "packages/shared/ReactSharedInternals.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberHooks.js" -> "packages/shared/ReactSymbols.js"
+    "packages/react-reconciler/src/ReactFiberHooks.js" -> "packages/shared/ReactTypes.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react-reconciler" {label="react-reconciler" subgraph "cluster_packages/react-reconciler/src" {label="src" "packages/react-reconciler/src/ReactFiberHotReloading.js" [label=<ReactFiberHotReloading.js> tooltip="ReactFiberHotReloading.js" URL="packages/react-reconciler/src/ReactFiberHotReloading.js" ] } } }
+    "packages/react-reconciler/src/ReactFiberHotReloading.js" -> "packages/react-reconciler/src/ReactFiberLane.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberHotReloading.js" -> "packages/react-reconciler/src/ReactFiberLegacyContext.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberHotReloading.js" -> "packages/react-reconciler/src/ReactFiberReconciler.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberHotReloading.js" -> "packages/react-reconciler/src/ReactFiberWorkLoop.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberHotReloading.js" -> "packages/react-reconciler/src/ReactInternalTypes.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberHotReloading.js" -> "packages/shared/ReactElementType.js"
+    "packages/react-reconciler/src/ReactFiberHotReloading.js" -> "packages/shared/ReactSymbols.js"
+    "packages/react-reconciler/src/ReactFiberHotReloading.js" -> "packages/shared/ReactTypes.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react-reconciler" {label="react-reconciler" subgraph "cluster_packages/react-reconciler/src" {label="src" "packages/react-reconciler/src/ReactFiberHydrationDiffs.js" [label=<ReactFiberHydrationDiffs.js> tooltip="ReactFiberHydrationDiffs.js" URL="packages/react-reconciler/src/ReactFiberHydrationDiffs.js" ] } } }
+    "packages/react-reconciler/src/ReactFiberHydrationDiffs.js" -> "packages/react-reconciler/src/ReactInternalTypes.js"
+    "packages/react-reconciler/src/ReactFiberHydrationDiffs.js" -> "packages/shared/assign.js"
+    "packages/react-reconciler/src/ReactFiberHydrationDiffs.js" -> "packages/shared/getComponentNameFromType.js"
+    "packages/react-reconciler/src/ReactFiberHydrationDiffs.js" -> "packages/shared/isArray.js"
+    "packages/react-reconciler/src/ReactFiberHydrationDiffs.js" -> "packages/shared/ReactFeatureFlags.js"
+    "packages/react-reconciler/src/ReactFiberHydrationDiffs.js" -> "packages/shared/ReactSymbols.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react-reconciler" {label="react-reconciler" subgraph "cluster_packages/react-reconciler/src" {label="src" "packages/react-reconciler/src/ReactFiberLane.js" [label=<ReactFiberLane.js> tooltip="ReactFiberLane.js" URL="packages/react-reconciler/src/ReactFiberLane.js" ] } } }
+    "packages/react-reconciler/src/ReactFiberLane.js" -> "packages/react-reconciler/src/ReactFiberDevToolsHook.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberLane.js" -> "packages/react-reconciler/src/ReactInternalTypes.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberLane.js" -> "packages/react/src/ReactStartTransition.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberLane.js" -> "packages/shared/ReactFeatureFlags.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react-reconciler" {label="react-reconciler" subgraph "cluster_packages/react-reconciler/src" {label="src" "packages/react-reconciler/src/ReactFiberLegacyContext.js" [label=<ReactFiberLegacyContext.js> tooltip="ReactFiberLegacyContext.js" URL="packages/react-reconciler/src/ReactFiberLegacyContext.js" ] } } }
+    "packages/react-reconciler/src/ReactFiberLegacyContext.js" -> "packages/react-reconciler/src/ReactInternalTypes.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberLegacyContext.js" -> "packages/react-reconciler/src/getComponentNameFromFiber.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberLegacyContext.js" -> "packages/shared/ReactFeatureFlags.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react-reconciler" {label="react-reconciler" subgraph "cluster_packages/react-reconciler/src" {label="src" "packages/react-reconciler/src/ReactFiberMutationTracking.js" [label=<ReactFiberMutationTracking.js> tooltip="ReactFiberMutationTracking.js" URL="packages/react-reconciler/src/ReactFiberMutationTracking.js" ] } } }
+    "packages/react-reconciler/src/ReactFiberMutationTracking.js" -> "packages/shared/ReactFeatureFlags.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react-reconciler" {label="react-reconciler" subgraph "cluster_packages/react-reconciler/src" {label="src" "packages/react-reconciler/src/ReactFiberNewContext.js" [label=<ReactFiberNewContext.js> tooltip="ReactFiberNewContext.js" URL="packages/react-reconciler/src/ReactFiberNewContext.js" ] } } }
+    "packages/react-reconciler/src/ReactFiberNewContext.js" -> "packages/react-reconciler/src/ReactFiberFlags.js"
+    "packages/react-reconciler/src/ReactFiberNewContext.js" -> "packages/react-reconciler/src/ReactFiberHooks.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberNewContext.js" -> "packages/react-reconciler/src/ReactFiberLane.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberNewContext.js" -> "packages/react-reconciler/src/ReactInternalTypes.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberNewContext.js" -> "packages/shared/objectIs.js"
+    "packages/react-reconciler/src/ReactFiberNewContext.js" -> "packages/shared/ReactTypes.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react-reconciler" {label="react-reconciler" subgraph "cluster_packages/react-reconciler/src" {label="src" "packages/react-reconciler/src/ReactFiberOffscreenComponent.js" [label=<ReactFiberOffscreenComponent.js> tooltip="ReactFiberOffscreenComponent.js" URL="packages/react-reconciler/src/ReactFiberOffscreenComponent.js" ] } } }
+    "packages/react-reconciler/src/ReactFiberOffscreenComponent.js" -> "packages/react-reconciler/src/ReactFiberCacheComponent.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberOffscreenComponent.js" -> "packages/react-reconciler/src/ReactFiberLane.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberOffscreenComponent.js" -> "packages/react-reconciler/src/ReactFiberSuspenseComponent.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberOffscreenComponent.js" -> "packages/react-reconciler/src/ReactFiberTracingMarkerComponent.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberOffscreenComponent.js" -> "packages/react/src/ReactStartTransition.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberOffscreenComponent.js" -> "packages/shared/ReactTypes.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react-reconciler" {label="react-reconciler" subgraph "cluster_packages/react-reconciler/src" {label="src" "packages/react-reconciler/src/ReactFiberPerformanceTrack.js" [label=<ReactFiberPerformanceTrack.js> tooltip="ReactFiberPerformanceTrack.js" URL="packages/react-reconciler/src/ReactFiberPerformanceTrack.js" ] } } }
+    "packages/react-reconciler/src/ReactFiberPerformanceTrack.js" -> "packages/react-reconciler/src/getComponentNameFromFiber.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberPerformanceTrack.js" -> "packages/react-reconciler/src/ReactFiberLane.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberPerformanceTrack.js" -> "packages/react-reconciler/src/ReactInternalTypes.js"
+    "packages/react-reconciler/src/ReactFiberPerformanceTrack.js" -> "packages/shared/ReactFeatureFlags.js"
+    "packages/react-reconciler/src/ReactFiberPerformanceTrack.js" -> "packages/shared/ReactPerformanceTrackProperties.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react-reconciler" {label="react-reconciler" subgraph "cluster_packages/react-reconciler/src" {label="src" "packages/react-reconciler/src/ReactFiberReconciler.js" [label=<ReactFiberReconciler.js> tooltip="ReactFiberReconciler.js" URL="packages/react-reconciler/src/ReactFiberReconciler.js" ] } } }
+    "packages/react-reconciler/src/ReactFiberReconciler.js" -> "packages/react-reconciler/src/ReactCurrentFiber.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberReconciler.js" -> "packages/react-reconciler/src/ReactFiberAsyncAction.js"
+    "packages/react-reconciler/src/ReactFiberReconciler.js" -> "packages/react-reconciler/src/ReactFiberClassUpdateQueue.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberReconciler.js" -> "packages/react-reconciler/src/ReactFiberDevToolsHook.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberReconciler.js" -> "packages/react-reconciler/src/ReactFiberErrorLogger.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberReconciler.js" -> "packages/react-reconciler/src/ReactFiberHooks.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberReconciler.js" -> "packages/react-reconciler/src/ReactFiberHotReloading.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberReconciler.js" -> "packages/react-reconciler/src/ReactFiberLane.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberReconciler.js" -> "packages/react-reconciler/src/ReactFiberLegacyContext.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberReconciler.js" -> "packages/react-reconciler/src/ReactFiberRoot.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberReconciler.js" -> "packages/react-reconciler/src/ReactFiberSuspenseComponent.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberReconciler.js" -> "packages/react-reconciler/src/ReactFiberTreeReflection.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberReconciler.js" -> "packages/react-reconciler/src/ReactFiberWorkLoop.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberReconciler.js" -> "packages/react-reconciler/src/ReactInternalTypes.js"
+    "packages/react-reconciler/src/ReactFiberReconciler.js" -> "packages/react-reconciler/src/ReactPortal.js" [arrowhead="inv"]
+    "packages/react-reconciler/src/ReactFiberReconciler.js" -> "packages/react-reconciler/src/ReactProfilerTimer.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberReconciler.js" -> "packages/react-reconciler/src/ReactTestSelectors.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberReconciler.js" -> "packages/react-reconciler/src/getComponentNameFromFiber.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberReconciler.js" -> "packages/shared/isArray.js"
+    "packages/react-reconciler/src/ReactFiberReconciler.js" -> "packages/shared/ReactFeatureFlags.js"
+    "packages/react-reconciler/src/ReactFiberReconciler.js" -> "packages/shared/ReactInstanceMap.js"
+    "packages/react-reconciler/src/ReactFiberReconciler.js" -> "packages/shared/ReactSharedInternals.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberReconciler.js" -> "packages/shared/ReactTypes.js"
+    "packages/react-reconciler/src/ReactFiberReconciler.js" -> "packages/shared/ReactVersion.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react-reconciler" {label="react-reconciler" subgraph "cluster_packages/react-reconciler/src" {label="src" "packages/react-reconciler/src/ReactFiberRoot.js" [label=<ReactFiberRoot.js> tooltip="ReactFiberRoot.js" URL="packages/react-reconciler/src/ReactFiberRoot.js" ] } } }
+    "packages/react-reconciler/src/ReactFiberRoot.js" -> "packages/react-reconciler/src/ReactFiber.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberRoot.js" -> "packages/react-reconciler/src/ReactFiberCacheComponent.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberRoot.js" -> "packages/react-reconciler/src/ReactFiberClassUpdateQueue.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberRoot.js" -> "packages/react-reconciler/src/ReactFiberLane.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberRoot.js" -> "packages/react-reconciler/src/ReactInternalTypes.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberRoot.js" -> "packages/shared/ReactFeatureFlags.js"
+    "packages/react-reconciler/src/ReactFiberRoot.js" -> "packages/shared/ReactTypes.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react-reconciler" {label="react-reconciler" subgraph "cluster_packages/react-reconciler/src" {label="src" "packages/react-reconciler/src/ReactFiberRootScheduler.js" [label=<ReactFiberRootScheduler.js> tooltip="ReactFiberRootScheduler.js" URL="packages/react-reconciler/src/ReactFiberRootScheduler.js" ] } } }
+    "packages/react-reconciler/src/ReactFiberRootScheduler.js" -> "packages/react-reconciler/src/ReactFiberAsyncAction.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberRootScheduler.js" -> "packages/react-reconciler/src/ReactFiberLane.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberRootScheduler.js" -> "packages/react-reconciler/src/ReactFiberWorkLoop.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberRootScheduler.js" -> "packages/react-reconciler/src/ReactInternalTypes.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberRootScheduler.js" -> "packages/react-reconciler/src/ReactProfilerTimer.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberRootScheduler.js" -> "packages/react/src/ReactStartTransition.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberRootScheduler.js" -> "packages/shared/noop.js"
+    "packages/react-reconciler/src/ReactFiberRootScheduler.js" -> "packages/shared/ReactFeatureFlags.js"
+    "packages/react-reconciler/src/ReactFiberRootScheduler.js" -> "packages/shared/ReactSharedInternals.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberRootScheduler.js" -> "packages/shared/reportGlobalError.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react-reconciler" {label="react-reconciler" subgraph "cluster_packages/react-reconciler/src" {label="src" "packages/react-reconciler/src/ReactFiberScope.js" [label=<ReactFiberScope.js> tooltip="ReactFiberScope.js" URL="packages/react-reconciler/src/ReactFiberScope.js" ] } } }
+    "packages/react-reconciler/src/ReactFiberScope.js" -> "packages/react-reconciler/src/ReactFiberTreeReflection.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberScope.js" -> "packages/react-reconciler/src/ReactInternalTypes.js"
+    "packages/react-reconciler/src/ReactFiberScope.js" -> "packages/shared/ReactFeatureFlags.js"
+    "packages/react-reconciler/src/ReactFiberScope.js" -> "packages/shared/ReactTypes.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react-reconciler" {label="react-reconciler" subgraph "cluster_packages/react-reconciler/src" {label="src" "packages/react-reconciler/src/ReactFiberSuspenseComponent.js" [label=<ReactFiberSuspenseComponent.js> tooltip="ReactFiberSuspenseComponent.js" URL="packages/react-reconciler/src/ReactFiberSuspenseComponent.js" ] } } }
+    "packages/react-reconciler/src/ReactFiberSuspenseComponent.js" -> "packages/react-reconciler/src/ReactFiberFlags.js"
+    "packages/react-reconciler/src/ReactFiberSuspenseComponent.js" -> "packages/react-reconciler/src/ReactFiberLane.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberSuspenseComponent.js" -> "packages/react-reconciler/src/ReactInternalTypes.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberSuspenseComponent.js" -> "packages/shared/ReactTypes.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react-reconciler" {label="react-reconciler" subgraph "cluster_packages/react-reconciler/src" {label="src" "packages/react-reconciler/src/ReactFiberSuspenseContext.js" [label=<ReactFiberSuspenseContext.js> tooltip="ReactFiberSuspenseContext.js" URL="packages/react-reconciler/src/ReactFiberSuspenseContext.js" ] } } }
+    "packages/react-reconciler/src/ReactFiberSuspenseContext.js" -> "packages/react-reconciler/src/ReactFiberSuspenseComponent.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberSuspenseContext.js" -> "packages/react-reconciler/src/ReactInternalTypes.js"
+    "packages/react-reconciler/src/ReactFiberSuspenseContext.js" -> "packages/shared/ReactFeatureFlags.js"
+    "packages/react-reconciler/src/ReactFiberSuspenseContext.js" -> "packages/shared/ReactTypes.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react-reconciler" {label="react-reconciler" subgraph "cluster_packages/react-reconciler/src" {label="src" "packages/react-reconciler/src/ReactFiberThenable.js" [label=<ReactFiberThenable.js> tooltip="ReactFiberThenable.js" URL="packages/react-reconciler/src/ReactFiberThenable.js" ] } } }
+    "packages/react-reconciler/src/ReactFiberThenable.js" -> "packages/react-reconciler/src/ReactFiberWorkLoop.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberThenable.js" -> "packages/react/src/ReactLazy.js"
+    "packages/react-reconciler/src/ReactFiberThenable.js" -> "packages/shared/noop.js"
+    "packages/react-reconciler/src/ReactFiberThenable.js" -> "packages/shared/ReactFeatureFlags.js"
+    "packages/react-reconciler/src/ReactFiberThenable.js" -> "packages/shared/ReactSharedInternals.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberThenable.js" -> "packages/shared/ReactTypes.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react-reconciler" {label="react-reconciler" subgraph "cluster_packages/react-reconciler/src" {label="src" "packages/react-reconciler/src/ReactFiberThrow.js" [label=<ReactFiberThrow.js> tooltip="ReactFiberThrow.js" URL="packages/react-reconciler/src/ReactFiberThrow.js" ] } } }
+    "packages/react-reconciler/src/ReactFiberThrow.js" -> "packages/react-reconciler/src/ReactCurrentFiber.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberThrow.js" -> "packages/react-reconciler/src/ReactFiberClassUpdateQueue.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberThrow.js" -> "packages/react-reconciler/src/ReactFiberDevToolsHook.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberThrow.js" -> "packages/react-reconciler/src/ReactFiberErrorLogger.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberThrow.js" -> "packages/react-reconciler/src/ReactFiberFlags.js"
+    "packages/react-reconciler/src/ReactFiberThrow.js" -> "packages/react-reconciler/src/ReactFiberHotReloading.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberThrow.js" -> "packages/react-reconciler/src/ReactFiberLane.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberThrow.js" -> "packages/react-reconciler/src/ReactFiberNewContext.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberThrow.js" -> "packages/react-reconciler/src/ReactFiberOffscreenComponent.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberThrow.js" -> "packages/react-reconciler/src/ReactFiberSuspenseComponent.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberThrow.js" -> "packages/react-reconciler/src/ReactFiberSuspenseContext.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberThrow.js" -> "packages/react-reconciler/src/ReactFiberThenable.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberThrow.js" -> "packages/react-reconciler/src/ReactFiberWorkLoop.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberThrow.js" -> "packages/react-reconciler/src/ReactInternalTypes.js"
+    "packages/react-reconciler/src/ReactFiberThrow.js" -> "packages/react-reconciler/src/getComponentNameFromFiber.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberThrow.js" -> "packages/shared/ReactFeatureFlags.js"
+    "packages/react-reconciler/src/ReactFiberThrow.js" -> "packages/shared/ReactTypes.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react-reconciler" {label="react-reconciler" subgraph "cluster_packages/react-reconciler/src" {label="src" "packages/react-reconciler/src/ReactFiberTracingMarkerComponent.js" [label=<ReactFiberTracingMarkerComponent.js> tooltip="ReactFiberTracingMarkerComponent.js" URL="packages/react-reconciler/src/ReactFiberTracingMarkerComponent.js" ] } } }
+    "packages/react-reconciler/src/ReactFiberTracingMarkerComponent.js" -> "packages/react-reconciler/src/ReactFiberOffscreenComponent.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberTracingMarkerComponent.js" -> "packages/react-reconciler/src/ReactFiberWorkLoop.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberTracingMarkerComponent.js" -> "packages/react-reconciler/src/ReactInternalTypes.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberTracingMarkerComponent.js" -> "packages/react/src/ReactStartTransition.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberTracingMarkerComponent.js" -> "packages/shared/ReactFeatureFlags.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react-reconciler" {label="react-reconciler" subgraph "cluster_packages/react-reconciler/src" {label="src" "packages/react-reconciler/src/ReactFiberTransition.js" [label=<ReactFiberTransition.js> tooltip="ReactFiberTransition.js" URL="packages/react-reconciler/src/ReactFiberTransition.js" ] } } }
+    "packages/react-reconciler/src/ReactFiberTransition.js" -> "packages/react-reconciler/src/ReactFiberAsyncAction.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberTransition.js" -> "packages/react-reconciler/src/ReactFiberCacheComponent.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberTransition.js" -> "packages/react-reconciler/src/ReactFiberGestureScheduler.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberTransition.js" -> "packages/react-reconciler/src/ReactFiberLane.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberTransition.js" -> "packages/react-reconciler/src/ReactFiberRootScheduler.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberTransition.js" -> "packages/react-reconciler/src/ReactFiberTransitionTypes.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberTransition.js" -> "packages/react-reconciler/src/ReactFiberWorkLoop.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberTransition.js" -> "packages/react-reconciler/src/ReactInternalTypes.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberTransition.js" -> "packages/react-reconciler/src/ReactProfilerTimer.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberTransition.js" -> "packages/react/src/ReactStartTransition.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberTransition.js" -> "packages/shared/ReactFeatureFlags.js"
+    "packages/react-reconciler/src/ReactFiberTransition.js" -> "packages/shared/ReactSharedInternals.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberTransition.js" -> "packages/shared/ReactTypes.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react-reconciler" {label="react-reconciler" subgraph "cluster_packages/react-reconciler/src" {label="src" "packages/react-reconciler/src/ReactFiberTransitionTypes.js" [label=<ReactFiberTransitionTypes.js> tooltip="ReactFiberTransitionTypes.js" URL="packages/react-reconciler/src/ReactFiberTransitionTypes.js" ] } } }
+    "packages/react-reconciler/src/ReactFiberTransitionTypes.js" -> "packages/react-reconciler/src/ReactFiberLane.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberTransitionTypes.js" -> "packages/react-reconciler/src/ReactInternalTypes.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberTransitionTypes.js" -> "packages/react/src/ReactTransitionType.js"
+    "packages/react-reconciler/src/ReactFiberTransitionTypes.js" -> "packages/shared/ReactFeatureFlags.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react-reconciler" {label="react-reconciler" subgraph "cluster_packages/react-reconciler/src" {label="src" "packages/react-reconciler/src/ReactFiberTreeReflection.js" [label=<ReactFiberTreeReflection.js> tooltip="ReactFiberTreeReflection.js" URL="packages/react-reconciler/src/ReactFiberTreeReflection.js" ] } } }
+    "packages/react-reconciler/src/ReactFiberTreeReflection.js" -> "packages/react-reconciler/src/ReactFiberFlags.js"
+    "packages/react-reconciler/src/ReactFiberTreeReflection.js" -> "packages/react-reconciler/src/ReactFiberSuspenseComponent.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberTreeReflection.js" -> "packages/react-reconciler/src/ReactInternalTypes.js"
+    "packages/react-reconciler/src/ReactFiberTreeReflection.js" -> "packages/shared/ReactFeatureFlags.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react-reconciler" {label="react-reconciler" subgraph "cluster_packages/react-reconciler/src" {label="src" "packages/react-reconciler/src/ReactFiberUnwindWork.js" [label=<ReactFiberUnwindWork.js> tooltip="ReactFiberUnwindWork.js" URL="packages/react-reconciler/src/ReactFiberUnwindWork.js" ] } } }
+    "packages/react-reconciler/src/ReactFiberUnwindWork.js" -> "packages/react-reconciler/src/ReactFiberCacheComponent.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberUnwindWork.js" -> "packages/react-reconciler/src/ReactFiberFlags.js"
+    "packages/react-reconciler/src/ReactFiberUnwindWork.js" -> "packages/react-reconciler/src/ReactFiberLane.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberUnwindWork.js" -> "packages/react-reconciler/src/ReactFiberLegacyContext.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberUnwindWork.js" -> "packages/react-reconciler/src/ReactFiberNewContext.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberUnwindWork.js" -> "packages/react-reconciler/src/ReactFiberSuspenseComponent.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberUnwindWork.js" -> "packages/react-reconciler/src/ReactFiberSuspenseContext.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberUnwindWork.js" -> "packages/react-reconciler/src/ReactFiberTracingMarkerComponent.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberUnwindWork.js" -> "packages/react-reconciler/src/ReactFiberTransition.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberUnwindWork.js" -> "packages/react-reconciler/src/ReactInternalTypes.js"
+    "packages/react-reconciler/src/ReactFiberUnwindWork.js" -> "packages/react-reconciler/src/ReactProfilerTimer.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberUnwindWork.js" -> "packages/shared/ReactFeatureFlags.js"
+    "packages/react-reconciler/src/ReactFiberUnwindWork.js" -> "packages/shared/ReactTypes.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react-reconciler" {label="react-reconciler" subgraph "cluster_packages/react-reconciler/src" {label="src" "packages/react-reconciler/src/ReactFiberViewTransitionComponent.js" [label=<ReactFiberViewTransitionComponent.js> tooltip="ReactFiberViewTransitionComponent.js" URL="packages/react-reconciler/src/ReactFiberViewTransitionComponent.js" ] } } }
+    "packages/react-reconciler/src/ReactFiberViewTransitionComponent.js" -> "packages/react-reconciler/src/ReactFiberWorkLoop.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberViewTransitionComponent.js" -> "packages/react-reconciler/src/ReactInternalTypes.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberViewTransitionComponent.js" -> "packages/shared/ReactTypes.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react-reconciler" {label="react-reconciler" subgraph "cluster_packages/react-reconciler/src" {label="src" "packages/react-reconciler/src/ReactFiberWorkLoop.js" [label=<ReactFiberWorkLoop.js> tooltip="ReactFiberWorkLoop.js" URL="packages/react-reconciler/src/ReactFiberWorkLoop.js" ] } } }
+    "packages/react-reconciler/src/ReactFiberWorkLoop.js" -> "packages/react-reconciler/src/ReactChildFiber.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberWorkLoop.js" -> "packages/react-reconciler/src/ReactCurrentFiber.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberWorkLoop.js" -> "packages/react-reconciler/src/ReactFiber.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberWorkLoop.js" -> "packages/react-reconciler/src/ReactFiberAct.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberWorkLoop.js" -> "packages/react-reconciler/src/ReactFiberApplyGesture.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberWorkLoop.js" -> "packages/react-reconciler/src/ReactFiberBeginWork.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberWorkLoop.js" -> "packages/react-reconciler/src/ReactFiberCacheComponent.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberWorkLoop.js" -> "packages/react-reconciler/src/ReactFiberClassUpdateQueue.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberWorkLoop.js" -> "packages/react-reconciler/src/ReactFiberCommitViewTransitions.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberWorkLoop.js" -> "packages/react-reconciler/src/ReactFiberCommitWork.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberWorkLoop.js" -> "packages/react-reconciler/src/ReactFiberCompleteWork.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberWorkLoop.js" -> "packages/react-reconciler/src/ReactFiberDevToolsHook.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberWorkLoop.js" -> "packages/react-reconciler/src/ReactFiberErrorLogger.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberWorkLoop.js" -> "packages/react-reconciler/src/ReactFiberFlags.js"
+    "packages/react-reconciler/src/ReactFiberWorkLoop.js" -> "packages/react-reconciler/src/ReactFiberGestureScheduler.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberWorkLoop.js" -> "packages/react-reconciler/src/ReactFiberHooks.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberWorkLoop.js" -> "packages/react-reconciler/src/ReactFiberLane.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberWorkLoop.js" -> "packages/react-reconciler/src/ReactFiberLegacyContext.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberWorkLoop.js" -> "packages/react-reconciler/src/ReactFiberNewContext.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberWorkLoop.js" -> "packages/react-reconciler/src/ReactFiberOffscreenComponent.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberWorkLoop.js" -> "packages/react-reconciler/src/ReactFiberPerformanceTrack.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberWorkLoop.js" -> "packages/react-reconciler/src/ReactFiberRoot.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberWorkLoop.js" -> "packages/react-reconciler/src/ReactFiberRootScheduler.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberWorkLoop.js" -> "packages/react-reconciler/src/ReactFiberSuspenseComponent.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberWorkLoop.js" -> "packages/react-reconciler/src/ReactFiberSuspenseContext.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberWorkLoop.js" -> "packages/react-reconciler/src/ReactFiberThenable.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberWorkLoop.js" -> "packages/react-reconciler/src/ReactFiberThrow.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberWorkLoop.js" -> "packages/react-reconciler/src/ReactFiberTracingMarkerComponent.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberWorkLoop.js" -> "packages/react-reconciler/src/ReactFiberTransition.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberWorkLoop.js" -> "packages/react-reconciler/src/ReactFiberTransitionTypes.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberWorkLoop.js" -> "packages/react-reconciler/src/ReactFiberUnwindWork.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberWorkLoop.js" -> "packages/react-reconciler/src/ReactFiberViewTransitionComponent.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberWorkLoop.js" -> "packages/react-reconciler/src/ReactInternalTypes.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberWorkLoop.js" -> "packages/react-reconciler/src/ReactProfilerTimer.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberWorkLoop.js" -> "packages/react-reconciler/src/ReactTestSelectors.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberWorkLoop.js" -> "packages/react-reconciler/src/getComponentNameFromFiber.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberWorkLoop.js" -> "packages/react/src/ReactStartTransition.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberWorkLoop.js" -> "packages/react/src/ReactTransitionType.js"
+    "packages/react-reconciler/src/ReactFiberWorkLoop.js" -> "packages/shared/objectIs.js"
+    "packages/react-reconciler/src/ReactFiberWorkLoop.js" -> "packages/shared/ReactFeatureFlags.js"
+    "packages/react-reconciler/src/ReactFiberWorkLoop.js" -> "packages/shared/ReactOwnerStackReset.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberWorkLoop.js" -> "packages/shared/ReactSharedInternals.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactFiberWorkLoop.js" -> "packages/shared/ReactSymbols.js"
+    "packages/react-reconciler/src/ReactFiberWorkLoop.js" -> "packages/shared/ReactTypes.js"
+    "packages/react-reconciler/src/ReactFiberWorkLoop.js" -> "packages/shared/reportGlobalError.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react-reconciler" {label="react-reconciler" subgraph "cluster_packages/react-reconciler/src" {label="src" "packages/react-reconciler/src/ReactInternalTypes.js" [label=<ReactInternalTypes.js> tooltip="ReactInternalTypes.js" URL="packages/react-reconciler/src/ReactInternalTypes.js" ] } } }
+    "packages/react-reconciler/src/ReactInternalTypes.js" -> "packages/react-reconciler/src/ReactFiberCacheComponent.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactInternalTypes.js" -> "packages/react-reconciler/src/ReactFiberFlags.js"
+    "packages/react-reconciler/src/ReactInternalTypes.js" -> "packages/react-reconciler/src/ReactFiberGestureScheduler.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactInternalTypes.js" -> "packages/react-reconciler/src/ReactFiberLane.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactInternalTypes.js" -> "packages/react-reconciler/src/ReactFiberThenable.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactInternalTypes.js" -> "packages/react-reconciler/src/ReactFiberTracingMarkerComponent.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactInternalTypes.js" -> "packages/react-server/src/ReactFizzComponentStack.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactInternalTypes.js" -> "packages/react/src/ReactStartTransition.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactInternalTypes.js" -> "packages/react/src/ReactTransitionType.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactInternalTypes.js" -> "packages/shared/ReactTypes.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react-reconciler" {label="react-reconciler" subgraph "cluster_packages/react-reconciler/src" {label="src" "packages/react-reconciler/src/ReactPortal.js" [label=<ReactPortal.js> tooltip="ReactPortal.js" URL="packages/react-reconciler/src/ReactPortal.js" ] } } }
+    "packages/react-reconciler/src/ReactPortal.js" -> "packages/shared/CheckStringCoercion.js"
+    "packages/react-reconciler/src/ReactPortal.js" -> "packages/shared/ReactSymbols.js"
+    "packages/react-reconciler/src/ReactPortal.js" -> "packages/shared/ReactTypes.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react-reconciler" {label="react-reconciler" subgraph "cluster_packages/react-reconciler/src" {label="src" "packages/react-reconciler/src/ReactProfilerTimer.js" [label=<ReactProfilerTimer.js> tooltip="ReactProfilerTimer.js" URL="packages/react-reconciler/src/ReactProfilerTimer.js" ] } } }
+    "packages/react-reconciler/src/ReactProfilerTimer.js" -> "packages/react-reconciler/src/getComponentNameFromFiber.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactProfilerTimer.js" -> "packages/react-reconciler/src/ReactFiberLane.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactProfilerTimer.js" -> "packages/react-reconciler/src/ReactFiberWorkLoop.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactProfilerTimer.js" -> "packages/react-reconciler/src/ReactInternalTypes.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactProfilerTimer.js" -> "packages/shared/ReactFeatureFlags.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react-reconciler" {label="react-reconciler" subgraph "cluster_packages/react-reconciler/src" {label="src" "packages/react-reconciler/src/ReactTestSelectors.js" [label=<ReactTestSelectors.js> tooltip="ReactTestSelectors.js" URL="packages/react-reconciler/src/ReactTestSelectors.js" ] } } }
+    "packages/react-reconciler/src/ReactTestSelectors.js" -> "packages/react-reconciler/src/ReactInternalTypes.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/ReactTestSelectors.js" -> "packages/shared/getComponentNameFromType.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react-reconciler" {label="react-reconciler" subgraph "cluster_packages/react-reconciler/src" {label="src" "packages/react-reconciler/src/getComponentNameFromFiber.js" [label=<getComponentNameFromFiber.js> tooltip="getComponentNameFromFiber.js" URL="packages/react-reconciler/src/getComponentNameFromFiber.js" ] } } }
+    "packages/react-reconciler/src/getComponentNameFromFiber.js" -> "packages/shared/ReactTypes.js"
+    "packages/react-reconciler/src/getComponentNameFromFiber.js" -> "packages/react-reconciler/src/ReactInternalTypes.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler/src/getComponentNameFromFiber.js" -> "packages/shared/getComponentNameFromType.js"
+    "packages/react-reconciler/src/getComponentNameFromFiber.js" -> "packages/shared/ReactFeatureFlags.js"
+    "packages/react-reconciler/src/getComponentNameFromFiber.js" -> "packages/shared/ReactSymbols.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react-server" {label="react-server" subgraph "cluster_packages/react-server/src" {label="src" "packages/react-server/src/ReactFizzComponentStack.js" [label=<ReactFizzComponentStack.js> tooltip="ReactFizzComponentStack.js" URL="packages/react-server/src/ReactFizzComponentStack.js" ] } } }
+    "packages/react-server/src/ReactFizzComponentStack.js" -> "packages/react/src/ReactLazy.js"
+    "packages/react-server/src/ReactFizzComponentStack.js" -> "packages/shared/ReactComponentStackFrame.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-server/src/ReactFizzComponentStack.js" -> "packages/shared/ReactFeatureFlags.js"
+    "packages/react-server/src/ReactFizzComponentStack.js" -> "packages/shared/ReactOwnerStackFrames.js"
+    "packages/react-server/src/ReactFizzComponentStack.js" -> "packages/shared/ReactSymbols.js"
+    "packages/react-server/src/ReactFizzComponentStack.js" -> "packages/shared/ReactTypes.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react" {label="react" "packages/react/index.js" [label=<index.js> tooltip="index.js" URL="packages/react/index.js" ] } }
+    "packages/react/index.js" -> "packages/react/src/ReactClient.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react" {label="react" subgraph "cluster_packages/react/src" {label="src" "packages/react/src/ReactAct.js" [label=<ReactAct.js> tooltip="ReactAct.js" URL="packages/react/src/ReactAct.js" ] } } }
+    "packages/react/src/ReactAct.js" -> "packages/react/src/ReactSharedInternalsClient.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react/src/ReactAct.js" -> "packages/shared/enqueueTask.js"
+    "packages/react/src/ReactAct.js" -> "packages/shared/ReactFeatureFlags.js"
+    "packages/react/src/ReactAct.js" -> "packages/shared/ReactTypes.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react" {label="react" subgraph "cluster_packages/react/src" {label="src" "packages/react/src/ReactBaseClasses.js" [label=<ReactBaseClasses.js> tooltip="ReactBaseClasses.js" URL="packages/react/src/ReactBaseClasses.js" ] } } }
+    "packages/react/src/ReactBaseClasses.js" -> "packages/shared/assign.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react" {label="react" subgraph "cluster_packages/react/src" {label="src" "packages/react/src/ReactCacheClient.js" [label=<ReactCacheClient.js> tooltip="ReactCacheClient.js" URL="packages/react/src/ReactCacheClient.js" ] } } }
+    "packages/react/src/ReactCacheClient.js" -> "packages/react/src/ReactCacheImpl.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react/src/ReactCacheClient.js" -> "packages/shared/ReactFeatureFlags.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react" {label="react" subgraph "cluster_packages/react/src" {label="src" "packages/react/src/ReactCacheImpl.js" [label=<ReactCacheImpl.js> tooltip="ReactCacheImpl.js" URL="packages/react/src/ReactCacheImpl.js" ] } } }
+    "packages/react/src/ReactCacheImpl.js" -> "packages/shared/ReactSharedInternals.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react" {label="react" subgraph "cluster_packages/react/src" {label="src" "packages/react/src/ReactChildren.js" [label=<ReactChildren.js> tooltip="ReactChildren.js" URL="packages/react/src/ReactChildren.js" ] } } }
+    "packages/react/src/ReactChildren.js" -> "packages/react/src/jsx" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react/src/ReactChildren.js" -> "packages/shared/CheckStringCoercion.js"
+    "packages/react/src/ReactChildren.js" -> "packages/shared/isArray.js"
+    "packages/react/src/ReactChildren.js" -> "packages/shared/noop.js"
+    "packages/react/src/ReactChildren.js" -> "packages/shared/ReactFeatureFlags.js"
+    "packages/react/src/ReactChildren.js" -> "packages/shared/ReactSymbols.js"
+    "packages/react/src/ReactChildren.js" -> "packages/shared/ReactTypes.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react" {label="react" subgraph "cluster_packages/react/src" {label="src" "packages/react/src/ReactClient.js" [label=<ReactClient.js> tooltip="ReactClient.js" URL="packages/react/src/ReactClient.js" ] } } }
+    "packages/react/src/ReactClient.js" -> "packages/react/src/jsx" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react/src/ReactClient.js" -> "packages/react/src/ReactAct.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react/src/ReactClient.js" -> "packages/react/src/ReactBaseClasses.js"
+    "packages/react/src/ReactClient.js" -> "packages/react/src/ReactCacheClient.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react/src/ReactClient.js" -> "packages/react/src/ReactChildren.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react/src/ReactClient.js" -> "packages/react/src/ReactContext.js"
+    "packages/react/src/ReactClient.js" -> "packages/react/src/ReactCreateRef.js"
+    "packages/react/src/ReactClient.js" -> "packages/react/src/ReactForwardRef.js"
+    "packages/react/src/ReactClient.js" -> "packages/react/src/ReactHooks.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react/src/ReactClient.js" -> "packages/react/src/ReactLazy.js"
+    "packages/react/src/ReactClient.js" -> "packages/react/src/ReactMemo.js"
+    "packages/react/src/ReactClient.js" -> "packages/react/src/ReactOwnerStack.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react/src/ReactClient.js" -> "packages/react/src/ReactSharedInternalsClient.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react/src/ReactClient.js" -> "packages/react/src/ReactStartTransition.js"
+    "packages/react/src/ReactClient.js" -> "packages/react/src/ReactTransitionType.js"
+    "packages/react/src/ReactClient.js" -> "packages/shared/ReactSymbols.js"
+    "packages/react/src/ReactClient.js" -> "packages/shared/ReactVersion.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react" {label="react" subgraph "cluster_packages/react/src" {label="src" "packages/react/src/ReactContext.js" [label=<ReactContext.js> tooltip="ReactContext.js" URL="packages/react/src/ReactContext.js" ] } } }
+    "packages/react/src/ReactContext.js" -> "packages/shared/ReactSymbols.js"
+    "packages/react/src/ReactContext.js" -> "packages/shared/ReactTypes.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react" {label="react" subgraph "cluster_packages/react/src" {label="src" "packages/react/src/ReactCreateRef.js" [label=<ReactCreateRef.js> tooltip="ReactCreateRef.js" URL="packages/react/src/ReactCreateRef.js" ] } } }
+    "packages/react/src/ReactCreateRef.js" -> "packages/shared/ReactTypes.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react" {label="react" subgraph "cluster_packages/react/src" {label="src" "packages/react/src/ReactForwardRef.js" [label=<ReactForwardRef.js> tooltip="ReactForwardRef.js" URL="packages/react/src/ReactForwardRef.js" ] } } }
+    "packages/react/src/ReactForwardRef.js" -> "packages/shared/ReactSymbols.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react" {label="react" subgraph "cluster_packages/react/src" {label="src" "packages/react/src/ReactHooks.js" [label=<ReactHooks.js> tooltip="ReactHooks.js" URL="packages/react/src/ReactHooks.js" ] } } }
+    "packages/react/src/ReactHooks.js" -> "packages/react-reconciler/src/ReactInternalTypes.js"
+    "packages/react/src/ReactHooks.js" -> "packages/shared/ReactSharedInternals.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react/src/ReactHooks.js" -> "packages/shared/ReactSymbols.js"
+    "packages/react/src/ReactHooks.js" -> "packages/shared/ReactTypes.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react" {label="react" subgraph "cluster_packages/react/src" {label="src" "packages/react/src/ReactLazy.js" [label=<ReactLazy.js> tooltip="ReactLazy.js" URL="packages/react/src/ReactLazy.js" ] } } }
+    "packages/react/src/ReactLazy.js" -> "packages/shared/noop.js"
+    "packages/react/src/ReactLazy.js" -> "packages/shared/ReactFeatureFlags.js"
+    "packages/react/src/ReactLazy.js" -> "packages/shared/ReactSymbols.js"
+    "packages/react/src/ReactLazy.js" -> "packages/shared/ReactTypes.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react" {label="react" subgraph "cluster_packages/react/src" {label="src" "packages/react/src/ReactMemo.js" [label=<ReactMemo.js> tooltip="ReactMemo.js" URL="packages/react/src/ReactMemo.js" ] } } }
+    "packages/react/src/ReactMemo.js" -> "packages/shared/ReactSymbols.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react" {label="react" subgraph "cluster_packages/react/src" {label="src" "packages/react/src/ReactOwnerStack.js" [label=<ReactOwnerStack.js> tooltip="ReactOwnerStack.js" URL="packages/react/src/ReactOwnerStack.js" ] } } }
+    "packages/react/src/ReactOwnerStack.js" -> "packages/shared/ReactSharedInternals.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react" {label="react" subgraph "cluster_packages/react/src" {label="src" "packages/react/src/ReactSharedInternalsClient.js" [label=<ReactSharedInternalsClient.js> tooltip="ReactSharedInternalsClient.js" URL="packages/react/src/ReactSharedInternalsClient.js" ] } } }
+    "packages/react/src/ReactSharedInternalsClient.js" -> "packages/react/src/ReactStartTransition.js"
+    "packages/react/src/ReactSharedInternalsClient.js" -> "packages/react-reconciler/src/ReactInternalTypes.js"
+    "packages/react/src/ReactSharedInternalsClient.js" -> "packages/shared/ReactFeatureFlags.js"
+    "packages/react/src/ReactSharedInternalsClient.js" -> "packages/shared/ReactTypes.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react" {label="react" subgraph "cluster_packages/react/src" {label="src" "packages/react/src/ReactStartTransition.js" [label=<ReactStartTransition.js> tooltip="ReactStartTransition.js" URL="packages/react/src/ReactStartTransition.js" ] } } }
+    "packages/react/src/ReactStartTransition.js" -> "packages/react/src/ReactTransitionType.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react/src/ReactStartTransition.js" -> "packages/react-reconciler/src/ReactInternalTypes.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react/src/ReactStartTransition.js" -> "packages/shared/noop.js"
+    "packages/react/src/ReactStartTransition.js" -> "packages/shared/ReactFeatureFlags.js"
+    "packages/react/src/ReactStartTransition.js" -> "packages/shared/ReactSharedInternals.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react/src/ReactStartTransition.js" -> "packages/shared/ReactTypes.js"
+    "packages/react/src/ReactStartTransition.js" -> "packages/shared/reportGlobalError.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react" {label="react" subgraph "cluster_packages/react/src" {label="src" "packages/react/src/ReactTransitionType.js" [label=<ReactTransitionType.js> tooltip="ReactTransitionType.js" URL="packages/react/src/ReactTransitionType.js" ] } } }
+    "packages/react/src/ReactTransitionType.js" -> "packages/react/src/ReactStartTransition.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react/src/ReactTransitionType.js" -> "packages/shared/ReactFeatureFlags.js"
+    "packages/react/src/ReactTransitionType.js" -> "packages/shared/ReactSharedInternals.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react" {label="react" subgraph "cluster_packages/react/src" {label="src" "packages/react/src/jsx" [label=<jsx> tooltip="jsx" URL="packages/react/src/jsx" shape="box3d"] } } }
+    "packages/react/src/jsx" -> "packages/shared/assign.js"
+    "packages/react/src/jsx" -> "packages/shared/CheckStringCoercion.js"
+    "packages/react/src/jsx" -> "packages/shared/getComponentNameFromType.js"
+    "packages/react/src/jsx" -> "packages/shared/hasOwnProperty.js"
+    "packages/react/src/jsx" -> "packages/shared/isArray.js"
+    "packages/react/src/jsx" -> "packages/shared/ReactFeatureFlags.js"
+    "packages/react/src/jsx" -> "packages/shared/ReactSharedInternals.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react/src/jsx" -> "packages/shared/ReactSymbols.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/shared" {label="shared" "packages/shared/CheckStringCoercion.js" [label=<CheckStringCoercion.js> tooltip="CheckStringCoercion.js" URL="packages/shared/CheckStringCoercion.js" ] } }
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/shared" {label="shared" "packages/shared/ConsolePatchingDev.js" [label=<ConsolePatchingDev.js> tooltip="ConsolePatchingDev.js" URL="packages/shared/ConsolePatchingDev.js" ] } }
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/shared" {label="shared" "packages/shared/DefaultPrepareStackTrace.js" [label=<DefaultPrepareStackTrace.js> tooltip="DefaultPrepareStackTrace.js" URL="packages/shared/DefaultPrepareStackTrace.js" ] } }
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/shared" {label="shared" "packages/shared/DefaultPrepareStackTraceV8.js" [label=<DefaultPrepareStackTraceV8.js> tooltip="DefaultPrepareStackTraceV8.js" URL="packages/shared/DefaultPrepareStackTraceV8.js" ] } }
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/shared" {label="shared" "packages/shared/ExecutionEnvironment.js" [label=<ExecutionEnvironment.js> tooltip="no-orphans" URL="packages/shared/ExecutionEnvironment.js" fillcolor="#ccffcc" fontcolor="blue" color="blue"] } }
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/shared" {label="shared" "packages/shared/ReactComponentInfoStack.js" [label=<ReactComponentInfoStack.js> tooltip="ReactComponentInfoStack.js" URL="packages/shared/ReactComponentInfoStack.js" ] } }
+    "packages/shared/ReactComponentInfoStack.js" -> "packages/shared/ReactComponentStackFrame.js"
+    "packages/shared/ReactComponentInfoStack.js" -> "packages/shared/ReactOwnerStackFrames.js"
+    "packages/shared/ReactComponentInfoStack.js" -> "packages/shared/ReactTypes.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/shared" {label="shared" "packages/shared/ReactComponentStackFrame.js" [label=<ReactComponentStackFrame.js> tooltip="ReactComponentStackFrame.js" URL="packages/shared/ReactComponentStackFrame.js" ] } }
+    "packages/shared/ReactComponentStackFrame.js" -> "packages/shared/ReactOwnerStackFrames.js"
+    "packages/shared/ReactComponentStackFrame.js" -> "packages/shared/ConsolePatchingDev.js"
+    "packages/shared/ReactComponentStackFrame.js" -> "packages/shared/DefaultPrepareStackTrace.js"
+    "packages/shared/ReactComponentStackFrame.js" -> "packages/shared/ReactSharedInternals.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/shared" {label="shared" "packages/shared/ReactDOMFragmentRefShared.js" [label=<ReactDOMFragmentRefShared.js> tooltip="ReactDOMFragmentRefShared.js" URL="packages/shared/ReactDOMFragmentRefShared.js" ] } }
+    "packages/shared/ReactDOMFragmentRefShared.js" -> "packages/react-reconciler/src/ReactFiberTreeReflection.js" [xlabel="shared-is-foundation" tooltip="shared-is-foundation" fontcolor="red" color="red"]
+    "packages/shared/ReactDOMFragmentRefShared.js" -> "packages/react-reconciler/src/ReactInternalTypes.js" [xlabel="shared-is-foundation" tooltip="shared-is-foundation" fontcolor="red" color="red"]
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/shared" {label="shared" "packages/shared/ReactDOMSharedInternals.js" [label=<ReactDOMSharedInternals.js> tooltip="ReactDOMSharedInternals.js" URL="packages/shared/ReactDOMSharedInternals.js" ] } }
+    "packages/shared/ReactDOMSharedInternals.js" -> "packages/react-dom/index.js" [xlabel="shared-is-foundation" tooltip="shared-is-foundation" arrowhead="normalnoneodot" fontcolor="red" color="red"]
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/shared" {label="shared" "packages/shared/ReactElementType.js" [label=<ReactElementType.js> tooltip="ReactElementType.js" URL="packages/shared/ReactElementType.js" ] } }
+    "packages/shared/ReactElementType.js" -> "packages/shared/ReactTypes.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/shared" {label="shared" "packages/shared/ReactFeatureFlags.js" [label=<ReactFeatureFlags.js> tooltip="ReactFeatureFlags.js" URL="packages/shared/ReactFeatureFlags.js" ] } }
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/shared" {label="shared" "packages/shared/ReactFlightPropertyAccess.js" [label=<ReactFlightPropertyAccess.js> tooltip="ReactFlightPropertyAccess.js" URL="packages/shared/ReactFlightPropertyAccess.js" ] } }
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/shared" {label="shared" "packages/shared/ReactIODescription.js" [label=<ReactIODescription.js> tooltip="no-orphans" URL="packages/shared/ReactIODescription.js" fillcolor="#ccffcc" fontcolor="blue" color="blue"] } }
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/shared" {label="shared" "packages/shared/ReactInstanceMap.js" [label=<ReactInstanceMap.js> tooltip="ReactInstanceMap.js" URL="packages/shared/ReactInstanceMap.js" ] } }
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/shared" {label="shared" "packages/shared/ReactOwnerStackFrames.js" [label=<ReactOwnerStackFrames.js> tooltip="ReactOwnerStackFrames.js" URL="packages/shared/ReactOwnerStackFrames.js" ] } }
+    "packages/shared/ReactOwnerStackFrames.js" -> "packages/shared/DefaultPrepareStackTrace.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/shared" {label="shared" "packages/shared/ReactOwnerStackReset.js" [label=<ReactOwnerStackReset.js> tooltip="ReactOwnerStackReset.js" URL="packages/shared/ReactOwnerStackReset.js" ] } }
+    "packages/shared/ReactOwnerStackReset.js" -> "packages/shared/ReactSharedInternals.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/shared" {label="shared" "packages/shared/ReactPerformanceTrackProperties.js" [label=<ReactPerformanceTrackProperties.js> tooltip="ReactPerformanceTrackProperties.js" URL="packages/shared/ReactPerformanceTrackProperties.js" ] } }
+    "packages/shared/ReactPerformanceTrackProperties.js" -> "packages/shared/getComponentNameFromType.js"
+    "packages/shared/ReactPerformanceTrackProperties.js" -> "packages/shared/ReactSymbols.js"
+    "packages/shared/ReactPerformanceTrackProperties.js" -> "packages/shared/hasOwnProperty.js"
+    "packages/shared/ReactPerformanceTrackProperties.js" -> "packages/shared/isArray.js"
+    "packages/shared/ReactPerformanceTrackProperties.js" -> "packages/shared/ReactFlightPropertyAccess.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/shared" {label="shared" "packages/shared/ReactSerializationErrors.js" [label=<ReactSerializationErrors.js> tooltip="ReactSerializationErrors.js" URL="packages/shared/ReactSerializationErrors.js" ] } }
+    "packages/shared/ReactSerializationErrors.js" -> "packages/react/src/ReactLazy.js" [xlabel="shared-is-foundation" tooltip="shared-is-foundation" fontcolor="red" color="red"]
+    "packages/shared/ReactSerializationErrors.js" -> "packages/shared/getPrototypeOf.js"
+    "packages/shared/ReactSerializationErrors.js" -> "packages/shared/isArray.js"
+    "packages/shared/ReactSerializationErrors.js" -> "packages/shared/ReactFeatureFlags.js"
+    "packages/shared/ReactSerializationErrors.js" -> "packages/shared/ReactSymbols.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/shared" {label="shared" "packages/shared/ReactSharedInternals.js" [label=<ReactSharedInternals.js> tooltip="ReactSharedInternals.js" URL="packages/shared/ReactSharedInternals.js" ] } }
+    "packages/shared/ReactSharedInternals.js" -> "packages/react/index.js" [xlabel="shared-is-foundation" tooltip="shared-is-foundation" arrowhead="normalnoneodot" fontcolor="red" color="red"]
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/shared" {label="shared" "packages/shared/ReactSymbols.js" [label=<ReactSymbols.js> tooltip="ReactSymbols.js" URL="packages/shared/ReactSymbols.js" ] } }
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/shared" {label="shared" "packages/shared/ReactTypes.js" [label=<ReactTypes.js> tooltip="ReactTypes.js" URL="packages/shared/ReactTypes.js" ] } }
+    "packages/shared/ReactTypes.js" -> "packages/shared/ReactSymbols.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/shared" {label="shared" "packages/shared/ReactVersion.js" [label=<ReactVersion.js> tooltip="ReactVersion.js" URL="packages/shared/ReactVersion.js" ] } }
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/shared" {label="shared" "packages/shared/assign.js" [label=<assign.js> tooltip="assign.js" URL="packages/shared/assign.js" ] } }
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/shared" {label="shared" "packages/shared/binaryToComparableString.js" [label=<binaryToComparableString.js> tooltip="no-orphans" URL="packages/shared/binaryToComparableString.js" fillcolor="#ccffcc" fontcolor="blue" color="blue"] } }
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/shared" {label="shared" "packages/shared/enqueueTask.js" [label=<enqueueTask.js> tooltip="enqueueTask.js" URL="packages/shared/enqueueTask.js" ] } }
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/shared" {label="shared" subgraph "cluster_packages/shared/forks" {label="forks" "packages/shared/forks/DefaultPrepareStackTrace.dom-edge.js" [label=<DefaultPrepareStackTrace.dom-edge.js> tooltip="DefaultPrepareStackTrace.dom-edge.js" URL="packages/shared/forks/DefaultPrepareStackTrace.dom-edge.js" ] } } }
+    "packages/shared/forks/DefaultPrepareStackTrace.dom-edge.js" -> "packages/shared/DefaultPrepareStackTraceV8.js" [arrowhead="inv"]
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/shared" {label="shared" subgraph "cluster_packages/shared/forks" {label="forks" "packages/shared/forks/DefaultPrepareStackTrace.dom-node.js" [label=<DefaultPrepareStackTrace.dom-node.js> tooltip="DefaultPrepareStackTrace.dom-node.js" URL="packages/shared/forks/DefaultPrepareStackTrace.dom-node.js" ] } } }
+    "packages/shared/forks/DefaultPrepareStackTrace.dom-node.js" -> "packages/shared/DefaultPrepareStackTraceV8.js" [arrowhead="inv"]
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/shared" {label="shared" subgraph "cluster_packages/shared/forks" {label="forks" "packages/shared/forks/DefaultPrepareStackTrace.markup.js" [label=<DefaultPrepareStackTrace.markup.js> tooltip="DefaultPrepareStackTrace.markup.js" URL="packages/shared/forks/DefaultPrepareStackTrace.markup.js" ] } } }
+    "packages/shared/forks/DefaultPrepareStackTrace.markup.js" -> "packages/shared/DefaultPrepareStackTraceV8.js" [arrowhead="inv"]
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/shared" {label="shared" subgraph "cluster_packages/shared/forks" {label="forks" "packages/shared/forks/ReactFeatureFlags.eslint-plugin.www.js" [label=<ReactFeatureFlags.eslint-plugin.www.js> tooltip="no-orphans" URL="packages/shared/forks/ReactFeatureFlags.eslint-plugin.www.js" fillcolor="#ccffcc" fontcolor="blue" color="blue"] } } }
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/shared" {label="shared" subgraph "cluster_packages/shared/forks" {label="forks" "packages/shared/forks/ReactFeatureFlags.native-fb-dynamic.js" [label=<ReactFeatureFlags.native-fb-dynamic.js> tooltip="ReactFeatureFlags.native-fb-dynamic.js" URL="packages/shared/forks/ReactFeatureFlags.native-fb-dynamic.js" ] } } }
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/shared" {label="shared" subgraph "cluster_packages/shared/forks" {label="forks" "packages/shared/forks/ReactFeatureFlags.native-fb.js" [label=<ReactFeatureFlags.native-fb.js> tooltip="ReactFeatureFlags.native-fb.js" URL="packages/shared/forks/ReactFeatureFlags.native-fb.js" ] } } }
+    "packages/shared/forks/ReactFeatureFlags.native-fb.js" -> "packages/shared/forks/ReactFeatureFlags.native-fb-dynamic.js"
+    "packages/shared/forks/ReactFeatureFlags.native-fb.js" -> "ReactNativeInternalFeatureFlags"
+    "packages/shared/forks/ReactFeatureFlags.native-fb.js" -> "packages/shared/ReactFeatureFlags.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/shared" {label="shared" subgraph "cluster_packages/shared/forks" {label="forks" "packages/shared/forks/ReactFeatureFlags.native-oss.js" [label=<ReactFeatureFlags.native-oss.js> tooltip="ReactFeatureFlags.native-oss.js" URL="packages/shared/forks/ReactFeatureFlags.native-oss.js" ] } } }
+    "packages/shared/forks/ReactFeatureFlags.native-oss.js" -> "packages/shared/ReactFeatureFlags.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/shared" {label="shared" subgraph "cluster_packages/shared/forks" {label="forks" "packages/shared/forks/ReactFeatureFlags.readonly.js" [label=<ReactFeatureFlags.readonly.js> tooltip="ReactFeatureFlags.readonly.js" URL="packages/shared/forks/ReactFeatureFlags.readonly.js" ] } } }
+    "packages/shared/forks/ReactFeatureFlags.readonly.js" -> "packages/shared/ReactFeatureFlags.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/shared" {label="shared" subgraph "cluster_packages/shared/forks" {label="forks" "packages/shared/forks/ReactFeatureFlags.test-renderer.js" [label=<ReactFeatureFlags.test-renderer.js> tooltip="ReactFeatureFlags.test-renderer.js" URL="packages/shared/forks/ReactFeatureFlags.test-renderer.js" ] } } }
+    "packages/shared/forks/ReactFeatureFlags.test-renderer.js" -> "packages/shared/ReactFeatureFlags.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/shared" {label="shared" subgraph "cluster_packages/shared/forks" {label="forks" "packages/shared/forks/ReactFeatureFlags.test-renderer.native-fb.js" [label=<ReactFeatureFlags.test-renderer.native-fb.js> tooltip="ReactFeatureFlags.test-renderer.native-fb.js" URL="packages/shared/forks/ReactFeatureFlags.test-renderer.native-fb.js" ] } } }
+    "packages/shared/forks/ReactFeatureFlags.test-renderer.native-fb.js" -> "packages/shared/forks/ReactFeatureFlags.test-renderer.js"
+    "packages/shared/forks/ReactFeatureFlags.test-renderer.native-fb.js" -> "packages/shared/ReactFeatureFlags.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/shared" {label="shared" subgraph "cluster_packages/shared/forks" {label="forks" "packages/shared/forks/ReactFeatureFlags.test-renderer.www.js" [label=<ReactFeatureFlags.test-renderer.www.js> tooltip="ReactFeatureFlags.test-renderer.www.js" URL="packages/shared/forks/ReactFeatureFlags.test-renderer.www.js" ] } } }
+    "packages/shared/forks/ReactFeatureFlags.test-renderer.www.js" -> "packages/shared/ReactFeatureFlags.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/shared" {label="shared" subgraph "cluster_packages/shared/forks" {label="forks" "packages/shared/forks/ReactFeatureFlags.www-dynamic.js" [label=<ReactFeatureFlags.www-dynamic.js> tooltip="ReactFeatureFlags.www-dynamic.js" URL="packages/shared/forks/ReactFeatureFlags.www-dynamic.js" ] } } }
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/shared" {label="shared" subgraph "cluster_packages/shared/forks" {label="forks" "packages/shared/forks/ReactFeatureFlags.www.js" [label=<ReactFeatureFlags.www.js> tooltip="ReactFeatureFlags.www.js" URL="packages/shared/forks/ReactFeatureFlags.www.js" ] } } }
+    "packages/shared/forks/ReactFeatureFlags.www.js" -> "packages/shared/forks/ReactFeatureFlags.www-dynamic.js"
+    "packages/shared/forks/ReactFeatureFlags.www.js" -> "ReactFeatureFlags"
+    "packages/shared/forks/ReactFeatureFlags.www.js" -> "packages/shared/ReactFeatureFlags.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/shared" {label="shared" "packages/shared/formatProdErrorMessage.js" [label=<formatProdErrorMessage.js> tooltip="no-orphans" URL="packages/shared/formatProdErrorMessage.js" fillcolor="#ccffcc" fontcolor="blue" color="blue"] } }
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/shared" {label="shared" "packages/shared/getComponentNameFromType.js" [label=<getComponentNameFromType.js> tooltip="getComponentNameFromType.js" URL="packages/shared/getComponentNameFromType.js" ] } }
+    "packages/shared/getComponentNameFromType.js" -> "packages/shared/ReactFeatureFlags.js"
+    "packages/shared/getComponentNameFromType.js" -> "packages/react/src/ReactLazy.js" [xlabel="shared-is-foundation" tooltip="shared-is-foundation" fontcolor="red" color="red"]
+    "packages/shared/getComponentNameFromType.js" -> "packages/shared/ReactSymbols.js"
+    "packages/shared/getComponentNameFromType.js" -> "packages/shared/ReactTypes.js"
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/shared" {label="shared" "packages/shared/getPrototypeOf.js" [label=<getPrototypeOf.js> tooltip="getPrototypeOf.js" URL="packages/shared/getPrototypeOf.js" ] } }
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/shared" {label="shared" "packages/shared/hasOwnProperty.js" [label=<hasOwnProperty.js> tooltip="hasOwnProperty.js" URL="packages/shared/hasOwnProperty.js" ] } }
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/shared" {label="shared" "packages/shared/isArray.js" [label=<isArray.js> tooltip="isArray.js" URL="packages/shared/isArray.js" ] } }
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/shared" {label="shared" "packages/shared/noop.js" [label=<noop.js> tooltip="noop.js" URL="packages/shared/noop.js" ] } }
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/shared" {label="shared" "packages/shared/normalizeConsoleFormat.js" [label=<normalizeConsoleFormat.js> tooltip="no-orphans" URL="packages/shared/normalizeConsoleFormat.js" fillcolor="#ccffcc" fontcolor="blue" color="blue"] } }
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/shared" {label="shared" "packages/shared/objectIs.js" [label=<objectIs.js> tooltip="objectIs.js" URL="packages/shared/objectIs.js" ] } }
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/shared" {label="shared" "packages/shared/reportGlobalError.js" [label=<reportGlobalError.js> tooltip="reportGlobalError.js" URL="packages/shared/reportGlobalError.js" ] } }
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/shared" {label="shared" "packages/shared/shallowEqual.js" [label=<shallowEqual.js> tooltip="shallowEqual.js" URL="packages/shared/shallowEqual.js" ] } }
+    "packages/shared/shallowEqual.js" -> "packages/shared/hasOwnProperty.js"
+    "packages/shared/shallowEqual.js" -> "packages/shared/objectIs.js"
+}

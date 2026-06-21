@@ -1,0 +1,161 @@
+strict digraph "dependency-cruiser output"{
+    rankdir="LR" splines="true" overlap="false" nodesep="0.16" ranksep="0.18" fontname="Helvetica-bold" fontsize="9" style="rounded,bold,filled" fillcolor="#ffffff" compound="true"
+    node [shape="box" style="rounded, filled" height="0.2" color="black" fillcolor="#ffffcc" fontcolor="black" fontname="Helvetica" fontsize="9"]
+    edge [arrowhead="normal" arrowsize="0.6" penwidth="2.0" color="#00000033" fontname="Helvetica" fontsize="9"]
+
+    subgraph "cluster_." {label="." subgraph "cluster_./devtools" {label="devtools" subgraph "cluster_./devtools/views" {label="views" subgraph "cluster_./devtools/views/Settings" {label="Settings" "./devtools/views/Settings/SettingsContext" [label=<SettingsContext> tooltip="SettingsContext" ] } } } }
+    "EventListener" [label=<EventListener> tooltip="EventListener" ]
+    "JSResource" [label=<JSResource> tooltip="JSResource" ]
+    "ReactFeatureFlags" [label=<ReactFeatureFlags> tooltip="ReactFeatureFlags" ]
+    "ReactFiberErrorDialog" [label=<ReactFiberErrorDialog> tooltip="ReactFiberErrorDialog" ]
+    "ReactNativeInternalFeatureFlags" [label=<ReactNativeInternalFeatureFlags> tooltip="ReactNativeInternalFeatureFlags" ]
+    "async_hooks" [label=<async_hooks> tooltip="async_hooks" URL="https://nodejs.org/api/async_hooks.html" color="grey" fontcolor="grey"]
+    "crypto" [label=<crypto> tooltip="crypto" URL="https://nodejs.org/api/crypto.html" color="grey" fontcolor="grey"]
+    "module" [label=<module> tooltip="module" URL="https://nodejs.org/api/module.html" color="grey" fontcolor="grey"]
+    subgraph "cluster_packages" {label="packages" "packages/react" [label=<react> tooltip="react" URL="packages/react" shape="box3d"] }
+    "packages/react" -> "packages/shared"
+    "packages/react" -> "packages/react-reconciler"
+    subgraph "cluster_packages" {label="packages" "packages/react-art" [label=<react-art> tooltip="react-art" URL="packages/react-art" shape="box3d"] }
+    "packages/react-art" -> "packages/react-reconciler"
+    "packages/react-art" -> "packages/shared"
+    subgraph "cluster_packages" {label="packages" "packages/react-client" [label=<react-client> tooltip="no-orphans" URL="packages/react-client" fillcolor="#ccffcc" fontcolor="blue" color="blue" shape="box3d"] }
+    "packages/react-client" -> "packages/react"
+    "packages/react-client" -> "packages/react-server"
+    "packages/react-client" -> "packages/shared"
+    "packages/react-client" -> "util" [style="dashed" penwidth="1.0"]
+    "packages/react-client" -> "packages/react-dom-bindings" [arrowhead="inv"]
+    "packages/react-client" -> "packages/react-server-dom-esm" [arrowhead="inv"]
+    "packages/react-client" -> "packages/react-flight-server-fb" [arrowhead="inv"]
+    "packages/react-client" -> "packages/react-server-dom-parcel" [arrowhead="inv"]
+    "packages/react-client" -> "packages/react-server-dom-turbopack" [arrowhead="inv"]
+    "packages/react-client" -> "packages/react-server-dom-webpack" [arrowhead="inv"]
+    "packages/react-client" -> "packages/react-server-dom-unbundled" [arrowhead="inv"]
+    "packages/react-client" -> "packages/react-markup" [arrowhead="inv"]
+    subgraph "cluster_packages" {label="packages" "packages/react-debug-tools" [label=<react-debug-tools> tooltip="react-debug-tools" URL="packages/react-debug-tools" shape="box3d"] }
+    "packages/react-debug-tools" -> "packages/react-reconciler"
+    "packages/react-debug-tools" -> "packages/shared"
+    subgraph "cluster_packages" {label="packages" "packages/react-devtools-shared" [label=<react-devtools-shared> tooltip="react-devtools-shared" URL="packages/react-devtools-shared" shape="box3d"] }
+    "packages/react-devtools-shared" -> "react-devtools-feature-flags"
+    "packages/react-devtools-shared" -> "packages/react-debug-tools"
+    "packages/react-devtools-shared" -> "packages/react-reconciler"
+    "packages/react-devtools-shared" -> "packages/shared"
+    "packages/react-devtools-shared" -> "packages/react-devtools-timeline"
+    "packages/react-devtools-shared" -> "./devtools/views/Settings/SettingsContext"
+    "packages/react-devtools-shared" -> "util" [style="dashed" penwidth="1.0"]
+    "packages/react-devtools-shared" -> "packages/react"
+    "packages/react-devtools-shared" -> "✖"
+    "packages/react-devtools-shared" -> "packages/react-dom"
+    subgraph "cluster_packages" {label="packages" "packages/react-devtools-timeline" [label=<react-devtools-timeline> tooltip="react-devtools-timeline" URL="packages/react-devtools-timeline" shape="box3d"] }
+    "packages/react-devtools-timeline" -> "packages/react-devtools-shared" [arrowhead="inv"]
+    "packages/react-devtools-timeline" -> "packages/react"
+    "packages/react-devtools-timeline" -> "packages/shared"
+    "packages/react-devtools-timeline" -> "react-devtools-feature-flags"
+    "packages/react-devtools-timeline" -> "packages/react-dom"
+    subgraph "cluster_packages" {label="packages" "packages/react-dom" [label=<react-dom> tooltip="react-dom" URL="packages/react-dom" shape="box3d"] }
+    "packages/react-dom" -> "packages/react-dom-bindings"
+    "packages/react-dom" -> "packages/react-reconciler"
+    "packages/react-dom" -> "packages/shared"
+    "packages/react-dom" -> "packages/react"
+    "packages/react-dom" -> "ReactFiberErrorDialog"
+    "packages/react-dom" -> "packages/react-server"
+    "packages/react-dom" -> "stream" [style="dashed" penwidth="1.0"]
+    subgraph "cluster_packages" {label="packages" "packages/react-dom-bindings" [label=<react-dom-bindings> tooltip="no-orphans" URL="packages/react-dom-bindings" fillcolor="#ccffcc" fontcolor="blue" color="blue" shape="box3d"] }
+    "packages/react-dom-bindings" -> "packages/shared"
+    "packages/react-dom-bindings" -> "packages/react-dom"
+    "packages/react-dom-bindings" -> "packages/react-server"
+    "packages/react-dom-bindings" -> "packages/react-reconciler"
+    "packages/react-dom-bindings" -> "✖"
+    "packages/react-dom-bindings" -> "packages/react"
+    "packages/react-dom-bindings" -> "packages/scheduler"
+    "packages/react-dom-bindings" -> "EventListener"
+    subgraph "cluster_packages" {label="packages" "packages/react-flight-server-fb" [label=<react-flight-server-fb> tooltip="react-flight-server-fb" URL="packages/react-flight-server-fb" shape="box3d"] }
+    "packages/react-flight-server-fb" -> "JSResource"
+    "packages/react-flight-server-fb" -> "packages/react-client"
+    "packages/react-flight-server-fb" -> "packages/shared"
+    "packages/react-flight-server-fb" -> "packages/react-dom-bindings"
+    "packages/react-flight-server-fb" -> "packages/react-server"
+    "packages/react-flight-server-fb" -> "stream" [style="dashed" penwidth="1.0"]
+    "packages/react-flight-server-fb" -> "util" [style="dashed" penwidth="1.0"]
+    subgraph "cluster_packages" {label="packages" "packages/react-markup" [label=<react-markup> tooltip="react-markup" URL="packages/react-markup" shape="box3d"] }
+    "packages/react-markup" -> "packages/react-dom-bindings"
+    "packages/react-markup" -> "packages/react-server"
+    "packages/react-markup" -> "packages/shared"
+    subgraph "cluster_packages" {label="packages" "packages/react-native-renderer" [label=<react-native-renderer> tooltip="react-native-renderer" URL="packages/react-native-renderer" shape="box3d"] }
+    "packages/react-native-renderer" -> "react-native/Libraries/ReactPrivate/ReactNativePrivateInterface"
+    "packages/react-native-renderer" -> "packages/react-reconciler"
+    "packages/react-native-renderer" -> "packages/shared"
+    "packages/react-native-renderer" -> "packages/react"
+    "packages/react-native-renderer" -> "react-native"
+    subgraph "cluster_packages" {label="packages" "packages/react-noop-renderer" [label=<react-noop-renderer> tooltip="react-noop-renderer" URL="packages/react-noop-renderer" shape="box3d"] }
+    subgraph "cluster_packages" {label="packages" "packages/react-reconciler" [label=<react-reconciler> tooltip="no-orphans" URL="packages/react-reconciler" fontcolor="blue" color="blue" shape="box3d"] }
+    "packages/react-reconciler" -> "packages/react-server" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler" -> "packages/react" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-reconciler" -> "packages/shared"
+    "packages/react-reconciler" -> "packages/scheduler"
+    "packages/react-reconciler" -> "packages/react-art" [arrowhead="inv"]
+    "packages/react-reconciler" -> "packages/react-client" [arrowhead="inv"]
+    "packages/react-reconciler" -> "packages/react-dom-bindings" [arrowhead="inv"]
+    "packages/react-reconciler" -> "packages/react-native-renderer" [arrowhead="inv"]
+    "packages/react-reconciler" -> "packages/react-noop-renderer" [arrowhead="inv"]
+    "packages/react-reconciler" -> "packages/react-test-renderer" [arrowhead="inv"]
+    subgraph "cluster_packages" {label="packages" "packages/react-server" [label=<react-server> tooltip="no-orphans" URL="packages/react-server" fillcolor="#ccffcc" fontcolor="blue" color="blue" shape="box3d"] }
+    "packages/react-server" -> "packages/react"
+    "packages/react-server" -> "packages/shared" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-server" -> "packages/react-reconciler"
+    "packages/react-server" -> "crypto" [style="dashed" penwidth="1.0"]
+    "packages/react-server" -> "stream" [style="dashed" penwidth="1.0"]
+    "packages/react-server" -> "util" [style="dashed" penwidth="1.0"]
+    "packages/react-server" -> "packages/react-client"
+    "packages/react-server" -> "async_hooks" [style="dashed" penwidth="1.0"]
+    "packages/react-server" -> "packages/react-dom-bindings" [arrowhead="inv"]
+    "packages/react-server" -> "packages/react-markup" [arrowhead="inv"]
+    "packages/react-server" -> "packages/react-server-dom-esm" [arrowhead="inv"]
+    "packages/react-server" -> "packages/react-flight-server-fb" [arrowhead="inv"]
+    "packages/react-server" -> "packages/react-server-dom-parcel" [arrowhead="inv"]
+    "packages/react-server" -> "packages/react-server-dom-turbopack" [arrowhead="inv"]
+    "packages/react-server" -> "packages/react-server-dom-webpack" [arrowhead="inv"]
+    "packages/react-server" -> "packages/react-server-dom-unbundled" [arrowhead="inv"]
+    subgraph "cluster_packages" {label="packages" "packages/react-server-dom-esm" [label=<react-server-dom-esm> tooltip="react-server-dom-esm" URL="packages/react-server-dom-esm" shape="box3d"] }
+    "packages/react-server-dom-esm" -> "packages/react-client"
+    "packages/react-server-dom-esm" -> "packages/shared"
+    "packages/react-server-dom-esm" -> "packages/react-server"
+    subgraph "cluster_packages" {label="packages" "packages/react-server-dom-parcel" [label=<react-server-dom-parcel> tooltip="react-server-dom-parcel" URL="packages/react-server-dom-parcel" shape="box3d"] }
+    "packages/react-server-dom-parcel" -> "packages/react-client"
+    "packages/react-server-dom-parcel" -> "packages/shared"
+    "packages/react-server-dom-parcel" -> "packages/react-server"
+    subgraph "cluster_packages" {label="packages" "packages/react-server-dom-turbopack" [label=<react-server-dom-turbopack> tooltip="react-server-dom-turbopack" URL="packages/react-server-dom-turbopack" shape="box3d"] }
+    "packages/react-server-dom-turbopack" -> "packages/react-client"
+    "packages/react-server-dom-turbopack" -> "packages/shared"
+    "packages/react-server-dom-turbopack" -> "packages/react-server"
+    subgraph "cluster_packages" {label="packages" "packages/react-server-dom-unbundled" [label=<react-server-dom-unbundled> tooltip="react-server-dom-unbundled" URL="packages/react-server-dom-unbundled" shape="box3d"] }
+    "packages/react-server-dom-unbundled" -> "packages/react-client"
+    "packages/react-server-dom-unbundled" -> "packages/shared"
+    "packages/react-server-dom-unbundled" -> "packages/react-server"
+    subgraph "cluster_packages" {label="packages" "packages/react-server-dom-webpack" [label=<react-server-dom-webpack> tooltip="no-orphans" URL="packages/react-server-dom-webpack" fontcolor="blue" color="blue" shape="box3d"] }
+    "packages/react-server-dom-webpack" -> "packages/react-client"
+    "packages/react-server-dom-webpack" -> "packages/shared"
+    "packages/react-server-dom-webpack" -> "module" [style="dashed" penwidth="1.0"]
+    "packages/react-server-dom-webpack" -> "url" [style="dashed" penwidth="1.0"]
+    "packages/react-server-dom-webpack" -> "path" [style="dashed" penwidth="1.0"]
+    "packages/react-server-dom-webpack" -> "packages/react-server"
+    "packages/react-server-dom-webpack" -> "stream" [style="dashed" penwidth="1.0"]
+    subgraph "cluster_packages" {label="packages" "packages/react-test-renderer" [label=<react-test-renderer> tooltip="react-test-renderer" URL="packages/react-test-renderer" shape="box3d"] }
+    "packages/react-test-renderer" -> "packages/react-reconciler"
+    "packages/react-test-renderer" -> "packages/react"
+    "packages/react-test-renderer" -> "packages/shared"
+    subgraph "cluster_packages" {label="packages" "packages/scheduler" [label=<scheduler> tooltip="scheduler" URL="packages/scheduler" shape="box3d"] }
+    subgraph "cluster_packages" {label="packages" "packages/shared" [label=<shared> tooltip="no-orphans" URL="packages/shared" fillcolor="#ccffcc" fontcolor="blue" color="blue" shape="box3d"] }
+    "packages/shared" -> "packages/react" [xlabel="shared-is-foundation" tooltip="shared-is-foundation" fontcolor="red" color="red"]
+    "packages/shared" -> "packages/react-dom" [xlabel="shared-is-foundation" tooltip="shared-is-foundation" arrowhead="normalnoneodot" fontcolor="red" color="red"]
+    "packages/shared" -> "packages/react-reconciler" [xlabel="shared-is-foundation" tooltip="shared-is-foundation" fontcolor="red" color="red"]
+    "packages/shared" -> "ReactNativeInternalFeatureFlags"
+    "packages/shared" -> "ReactFeatureFlags"
+    "path" [label=<path> tooltip="path" URL="https://nodejs.org/api/path.html" color="grey" fontcolor="grey"]
+    "react-devtools-feature-flags" [label=<react-devtools-feature-flags> tooltip="react-devtools-feature-flags" ]
+    "react-native" [label=<react-native> tooltip="react-native" ]
+    subgraph "cluster_react-native" {label="react-native" subgraph "cluster_react-native/Libraries" {label="Libraries" subgraph "cluster_react-native/Libraries/ReactPrivate" {label="ReactPrivate" "react-native/Libraries/ReactPrivate/ReactNativePrivateInterface" [label=<ReactNativePrivateInterface> tooltip="ReactNativePrivateInterface" ] } } }
+    "stream" [label=<stream> tooltip="stream" URL="https://nodejs.org/api/stream.html" color="grey" fontcolor="grey"]
+    "url" [label=<url> tooltip="url" URL="https://nodejs.org/api/url.html" color="grey" fontcolor="grey"]
+    "util" [label=<util> tooltip="util" URL="https://nodejs.org/api/util.html" color="grey" fontcolor="grey"]
+    "✖" [label=<✖> tooltip="✖" ]
+}

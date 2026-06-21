@@ -1,0 +1,18 @@
+strict digraph "dependency-cruiser output"{
+    rankdir="LR" splines="true" overlap="false" nodesep="0.16" ranksep="0.18" fontname="Helvetica-bold" fontsize="9" style="rounded,bold,filled" fillcolor="#ffffff" compound="true"
+    node [shape="box" style="rounded, filled" height="0.2" color="black" fillcolor="#ffffcc" fontcolor="black" fontname="Helvetica" fontsize="9"]
+    edge [arrowhead="normal" arrowsize="0.6" penwidth="2.0" color="#00000033" fontname="Helvetica" fontsize="9"]
+
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react-dom-bindings" {label="react-dom-bindings" subgraph "cluster_packages/react-dom-bindings/src" {label="src" "packages/react-dom-bindings/src/shared" [label=<shared> tooltip="shared" URL="packages/react-dom-bindings/src/shared" shape="box3d"] } } }
+    "packages/react-dom-bindings/src/shared" -> "packages/shared/ReactDOMSharedInternals.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react-dom" {label="react-dom" "packages/react-dom/index.js" [label=<index.js> tooltip="index.js" URL="packages/react-dom/index.js" ] } }
+    "packages/react-dom/index.js" -> "packages/react-dom/src/ReactDOMSharedInternals.js" [arrowhead="inv"]
+    "packages/react-dom/index.js" -> "packages/react-dom/src/shared" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react-dom" {label="react-dom" subgraph "cluster_packages/react-dom/src" {label="src" "packages/react-dom/src/ReactDOMSharedInternals.js" [label=<ReactDOMSharedInternals.js> tooltip="ReactDOMSharedInternals.js" URL="packages/react-dom/src/ReactDOMSharedInternals.js" ] } } }
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react-dom" {label="react-dom" subgraph "cluster_packages/react-dom/src" {label="src" "packages/react-dom/src/ReactDOMSharedInternalsFB.js" [label=<ReactDOMSharedInternalsFB.js> tooltip="no-orphans" URL="packages/react-dom/src/ReactDOMSharedInternalsFB.js" fillcolor="#ccffcc" fontcolor="blue" color="blue"] } } }
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/react-dom" {label="react-dom" subgraph "cluster_packages/react-dom/src" {label="src" "packages/react-dom/src/shared" [label=<shared> tooltip="shared" URL="packages/react-dom/src/shared" shape="box3d"] } } }
+    "packages/react-dom/src/shared" -> "packages/react-dom-bindings/src/shared" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    "packages/react-dom/src/shared" -> "packages/shared/ReactDOMSharedInternals.js" [xlabel="no-circular" tooltip="no-circular" arrowhead="normalnoneodot" fontcolor="orange" color="orange"]
+    subgraph "cluster_packages" {label="packages" subgraph "cluster_packages/shared" {label="shared" "packages/shared/ReactDOMSharedInternals.js" [label=<ReactDOMSharedInternals.js> tooltip="ReactDOMSharedInternals.js" URL="packages/shared/ReactDOMSharedInternals.js" ] } }
+    "packages/shared/ReactDOMSharedInternals.js" -> "packages/react-dom/index.js" [xlabel="shared-is-foundation" tooltip="shared-is-foundation" arrowhead="normalnoneodot" fontcolor="red" color="red"]
+}
