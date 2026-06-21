@@ -152,6 +152,34 @@ jobs:
           yarn generate-inline-fizz-runtime
           git diff --exit-code || (echo "There was a change to the Fizz runtime. Run \`yarn generate-inline-fizz-runtime\` and check in the result." && false)
 
+  # ----- HOST CONFIG FORKS -----
+  check_generated_host_config_forks:
+    name: Confirm generated host config forks are up to date
+    needs: [runtime_node_modules_cache]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Restore cached node_modules
+        uses: actions/cache/restore@v4
+        id: node_modules
+        with:
+          path: |
+            **/node_modules
+          key: runtime-node_modules-v9-${{ runner.arch }}-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
+          # Don't use restore-keys here. Otherwise the cache grows indefinitely.
+      - name: Ensure clean build directory
+        run: rm -rf build
+      - run: yarn install --frozen-lockfile
+        if: steps.node_modules.outputs.cache-hit != 'true'
+      - run: |
+          yarn generate-host-config-forks
+          git diff --exit-code || (echo "There was a change to the host config forks. Run \`yarn generate-host-config-forks\` and check in the result." && false)
+
   # ----- FEATURE FLAGS -----
   flags:
     name: Check flags

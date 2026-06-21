@@ -247,32 +247,32 @@ No data or runtime migration. `.custom.js`/`.noop.js` become generated artifacts
 
 #### Automated
 
-- [x] 1.1 Parity test passes (`yarn test scripts/shared/__tests__/hostConfigForkSurface-test.js`)
-- [x] 1.2 Full suite unaffected (`yarn test`)
-- [x] 1.3 Canonical count self-check holds (166 symbols)
-- [x] 1.4 Linting passes (`yarn lint`)
+- [x] 1.1 Parity test passes (`yarn test scripts/shared/__tests__/hostConfigForkSurface-test.js`) — 0f42d0a37
+- [x] 1.2 Full suite unaffected (`yarn test`) — 0f42d0a37
+- [x] 1.3 Canonical count self-check holds (166 symbols) — 0f42d0a37
+- [x] 1.4 Linting passes (`yarn lint`) — 0f42d0a37
 
 #### Manual
 
-- [x] 1.5 Deleting an `export const` from `.custom.js` makes the parity test fail, then revert
-- [x] 1.6 Allowlist entries each have a clear, correct rationale
+- [x] 1.5 Deleting an `export const` from `.custom.js` makes the parity test fail, then revert — 0f42d0a37
+- [x] 1.6 Allowlist entries each have a clear, correct rationale — 0f42d0a37
 
 ### Phase 2: T2 — Codegen for `.custom`/`.noop`
 
 #### Automated
 
-- [ ] 2.1 Generating `.custom.js` produces zero diff vs committed
-- [ ] 2.2 Generating `.noop.js` produces zero diff vs committed
-- [ ] 2.3 Parity test still passes
-- [ ] 2.4 Flow unaffected (`yarn flow`)
-- [ ] 2.5 Full suite passes (`yarn test`)
-- [ ] 2.6 Linting passes (`yarn lint`)
+- [x] 2.1 Generating `.custom.js` produces zero diff vs committed
+- [x] 2.2 Generating `.noop.js` produces zero diff vs committed
+- [x] 2.3 Parity test still passes
+- [x] 2.4 Flow unaffected (`yarn flow`)
+- [x] 2.5 Full suite passes (`yarn test`)
+- [x] 2.6 Linting passes (`yarn lint`)
 
 #### Manual
 
-- [ ] 2.7 Adding a symbol + regenerating yields correct passthroughs in both files, then revert
-- [ ] 2.8 Generated files visually indistinguishable from originals
-- [ ] 2.9 CI freshness step fails on a hand-edited out-of-sync fork, then revert
+- [x] 2.7 Adding a symbol + regenerating yields correct passthroughs in both files, then revert
+- [x] 2.8 Generated files visually indistinguishable from originals
+- [x] 2.9 CI freshness step fails on a hand-edited out-of-sync fork, then revert
 
 ### Phase 3: T1 — Extract the shared fork selector
 
