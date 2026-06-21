@@ -1,7 +1,7 @@
 ---
 change_id: refactor-opportunities
 title: Rank documented tech-debt and structural risks into prioritized refactor opportunities
-status: implemented
+status: impl_reviewed
 created: 2026-06-21
 updated: 2026-06-21
 archived_at: null

@@ -288,3 +288,12 @@ No data or runtime migration. `.custom.js`/`.noop.js` become generated artifacts
 
 - [x] 3.6 All three toolchains resolve the same fork for a representative `shortName` — 15fbae4e0
 - [x] 3.7 No behavioral difference for edge cases (multi-segment names, base fallback) — 15fbae4e0
+
+---
+
+## Addenda (implementation deviations)
+
+Recorded during `/10x-impl-review` (2026-06-21). Both are improvements over the plan's wording; the anti-regex intent and the 166-symbol self-check are fully preserved.
+
+- **Parser: `@babel/parser` → `hermes-parser`** (`scripts/shared/hostConfigForkSurface.js`). The plan specified Babel (matching `evalToString-test.js`), but the implementation uses hermes-parser with `{flow: 'all'}` — React's native Flow parser, which handles the forks' `opaque type` / `declare` Flow syntax cleanly and still counts the multiline `export const X =\n  $$$config.X;` wrapping correctly (AST, not line-regex).
+- **`getForkExports` returns an ordered array, not a `Set`.** The plan's contract said `Set<string>`, but React's Jest environment (regenerator/Babel transform) breaks `[...new Set()]` spreading — it yields `[set]` rather than the elements. The test uses plain arrays + `includes` for membership, and the `.noop` allowlist is consequently **empty** (the leading `export *` and opaque types are never `export const`, so they never enter the parsed surface).

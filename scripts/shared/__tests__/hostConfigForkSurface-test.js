@@ -50,9 +50,10 @@ describe('host config fork surface', () => {
   // cell.
   it('.noop.js export-const surface matches the canon (modulo allowlist)', () => {
     // NOTE: This test deliberately avoids the `Set` builtin. React's Jest
-    // sandbox (scripts/jest/setupTests.js) replaces the global iterator
-    // machinery such that spreading a `Set` (`[...set]`) yields `[set]` rather
-    // than its elements. We use plain arrays + `includes` for membership.
+    // environment (the regenerator/Babel transform applied to test sources)
+    // alters the global iterator machinery such that spreading a `Set`
+    // (`[...set]`) yields `[set]` rather than its elements. We use plain
+    // arrays + `includes` for membership.
     const canon = getCanonicalSymbols();
     const noop = getForkExports(
       path.join(FORKS_DIR, 'ReactFiberConfig.noop.js')
