@@ -20,7 +20,7 @@ Wszystkie artefakty modułu 4 powstały na **jednym** repo — nie pochodzą z r
 4. **Most o najwyższym sprzężeniu — `ReactFiberConfigDOM.js`** (20 zależności cross-area). Wybrany jako wejście do L3.
 5. **Najważniejszy unknown:** `compiler/crates` (Rust) poza grafem dependency-cruiser — to **brak danych o sprzężeniach**, NIE „brak sprzężeń".
 
-## 3. Analiza ficzera (z L3 — `host-config-seam/research.md`, React)
+## 3. Analiza ficzera (z L3 — `context/changes/host-config-seam/research.md`, React)
 
 **Co badano i dlaczego.** Szew **host-config** (`ReactFiberConfig` shim → fork → `ReactFiberConfigDOM`) — wybrany, bo mapa wskazała `ReactFiberConfigDOM.js` jako most o najwyższym sprzężeniu cross-area (strefa ryzyka §4).
 
@@ -55,4 +55,4 @@ Wszystkie artefakty modułu 4 powstały na **jednym** repo — nie pochodzą z r
 
 ## 6. Decyzje, które należą do mnie
 
-AI podpowiedziało *mechanikę i dowody* — zliczyło 166 symboli, 7 forków, 29 importerów (ast-grep, z odróżnieniem 25 value / 4 type-only) i wykryło, że naiwny grep zaniża do 135. Ja rozstrzygnąłem **priorytety i granice**: że refaktor idzie nie w najdotkliwszy dług (T7), lecz w najtańsze odwracalne osłony (T4→T2→T1), oraz że T5 to redesign pojęć, a T6 to guard, nie przebudowa — świadome „osłona przed przebudową". W L5 sam zdecydowałem, że skoro plan L4 zamknął większość A1, niezmiennik #1 przesuwa się na nieegzekwowane N4 (capability ⊕), a nie na już-zabezpieczoną parzystość powierzchni. Wybór `hermes-parser` zamiast Babel i rezygnacja z typu-sumy Flow (zbyt duży blast radius) to też moje decyzje, nie sugestie AI.
+AI podpowiedziało *mechanikę i dowody* — zliczyło 166 symboli, 7 forków, 29 importerów (ast-grep, z odróżnieniem 25 value / 4 type-only) i wykryło, że naiwny grep zaniża do 135. Ja rozstrzygnąłem **priorytety i granice**: że refaktor idzie nie w najdotkliwszy dług (T7), lecz w najtańsze odwracalne osłony (T4→T2→T1), oraz że T5 to redesign pojęć, a T6 to guard, nie przebudowa — świadome „osłona przed przebudową". W L5 sam zdecydowałem, że skoro plan L4 zamknął większość A1, niezmiennik #1 przesuwa się na nieegzekwowane N4 (capability ⊕), a nie na już-zabezpieczoną parzystość powierzchni. Świadomie też odrzuciłem typ-sumę Flow dla XOR capability — to przepisanie kontraktu flag w 6+ plikach (blast radius T7), więc test konformancji to tańsza, lokalna bramka o tym samym efekcie. (Dla porządku: zmiana parsera Babel→`hermes-parser` nie była moją decyzją z góry, lecz odstępstwem ujawnionym dopiero w impl-review — `plan.md` Addenda — gdy Babel nie radził sobie z `opaque type` forków; zostawiam to jako fakt wykonawczy, nie zasługę architektoniczną.)
